@@ -4,7 +4,7 @@
 
 body {
     margin: 0;
-    width: 100vw;
+  
 }
 
 header {
@@ -24,4 +24,40 @@ header {
 
 .row {
     flex-direction: row;
+}
+/* Vår produkt container som wrappar alla produkter */
+#productContainer {
+    display: flex;
+    min-height: 90vh;
+    align-items: center;
+    background-color: lightsalmon; /* For develope purpose */
+    
+}
+
+/* Vårt innehåll i produktkorten, skapat i Javascript stylas här */
+.productCard {
+    background-color: green;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10vh;
+    width: 30%;
+
+}
+.productPrice {
+
+}
+.productDescr {
+
+}
+ .productImgContainer {
+    
+}
+.productImg {
+    max-width: 100%;
+    height: 500px;
+    object-fit: contain;
+}
+.productTitle {
+
 }
