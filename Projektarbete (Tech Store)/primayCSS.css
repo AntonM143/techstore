@@ -47,6 +47,7 @@ main {
     align-items: center;
     margin-top: 10vh;
     width: 30%;
+    border-radius: 5%;
 }
 .productCard:last-child {
     margin-bottom: 10vh;

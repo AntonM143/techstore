@@ -79,10 +79,10 @@ function cartButton() {
             console.log("i Else")
         }
         savedLocalProducts.push({   //Pushar och skapar mitt object in i min array vid namn "savedLocalData"
-        title: getTitleElement(product).data
-
+/*         title: getTitleElement(product).title
+ */
         
-/*         productTitle.innerText
+/*           productTitle.innerText
  */
     
     })
