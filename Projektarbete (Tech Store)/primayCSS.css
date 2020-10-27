@@ -33,43 +33,59 @@ main {
 /* Vår produkt container som wrappar alla produkter */
 #productContainer {
 	display: flex;
-	min-height: 90vh;
-	align-items: center;
-	background-color: lightsalmon; /* For develope purpose */
+	/* min-height: 90vh; */
+    align-items: center;
+    text-align: center;
+	background-color:#FFFFFF; /* For develope purpose */
 }
 
 /* Vårt innehåll i produktkorten, skapat i Javascript stylas här */
 .productCard {
-	background-color: green;
+	background-color: #FFFFFF;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	margin-top: 10vh;
-	width: 30%;
-	border-radius: 5%;
+    border-radius: 5%;
+    font-weight: bold;
 }
 .productCard:last-child {
 	margin-bottom: 10vh;
 }
 .productPrice {
+    margin-top: -8px;
+    font-size: 1.2em;
+    font-weight: bolder;
 }
 .productDescr {
+    font-size: 1em;
 }
 .productImgContainer {
+    
 }
 .productImg {
 	max-width: 100%;
-	height: 500px;
-	object-fit: contain;
+	height: 86.5vh;
+    object-fit: contain;
+    padding: 1em;
 }
 .productTitle {
-<<<<<<< Updated upstream
-}
-=======
-
+    font-size: 4em;
+    margin-bottom: 5px;
 }
 .productButton{
+    display: flex;
+    font-size: 1.7em;
+    height: 7vh;
+    flex-direction: row-reverse;
+    border: none;
+    border-radius: 0.5em;
+    align-items: center;
     color: #FFFFFF;
     background-color: #5596F5;
 }
->>>>>>> Stashed changes
+.fa-cart-arrow-down{
+    text-align: start;
+    flex: 1 0 0;
+    padding: 10px;
+}
