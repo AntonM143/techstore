@@ -1,71 +1,66 @@
 * {
-    box-sizing: border-box;
+	box-sizing: border-box;
 }
 
 body {
-    margin: 0;
-  
+	margin: 0;
 }
 
 header {
-    width: 100%;
-    height: 10vh;
-    top: 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: black;
-    color: white;
-    padding: 20px;
-    position: fixed;
+	width: 100%;
+	height: 90px;
+	top: 0;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	background-color: #212121;
+	color: white;
+	padding: 20px;
+	position: fixed;
 }
 
 main {
-    margin-top: 10vh;
+	margin-top: 90px;
 }
 
 .column {
-    flex-direction: column;
+	flex-direction: column;
 }
 
 .row {
-    flex-direction: row;
+	flex-direction: row;
 }
 /* Vår produkt container som wrappar alla produkter */
 #productContainer {
-    display: flex;
-    min-height: 90vh;
-    align-items: center;
-    background-color: lightsalmon; /* For develope purpose */
+	display: flex;
+	min-height: 90vh;
+	align-items: center;
+	background-color: lightsalmon; /* For develope purpose */
 }
 
 /* Vårt innehåll i produktkorten, skapat i Javascript stylas här */
 .productCard {
-    background-color: green;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 10vh;
-    width: 30%;
-    border-radius: 5%;
+	background-color: green;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin-top: 10vh;
+	width: 30%;
+	border-radius: 5%;
 }
 .productCard:last-child {
-    margin-bottom: 10vh;
+	margin-bottom: 10vh;
 }
 .productPrice {
-
 }
 .productDescr {
-
 }
- .productImgContainer {
-    
+.productImgContainer {
 }
 .productImg {
-    max-width: 100%;
-    height: 500px;
-    object-fit: contain;
+	max-width: 100%;
+	height: 500px;
+	object-fit: contain;
 }
 .productTitle {
-
 }
