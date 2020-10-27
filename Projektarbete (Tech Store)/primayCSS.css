@@ -63,4 +63,13 @@ main {
 	object-fit: contain;
 }
 .productTitle {
+<<<<<<< Updated upstream
 }
+=======
+
+}
+.productButton{
+    color: #FFFFFF;
+    background-color: #5596F5;
+}
+>>>>>>> Stashed changes
