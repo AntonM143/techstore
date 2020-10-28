@@ -19,5 +19,35 @@
         "description": "Super nice and beautiful smartphone from LG.",
         "image": "assets/LGV30.png",
         "price": 7495
+    },{
+        "title": "OnePlus Nord",
+        "description": "Super nice and beautiful smartphone from LG.",
+        "image": "assets/OnePlusNord.png",
+        "price": 5590
+    },{
+        "title": "Huawei Mate 40",
+        "description": "Super nice and beautiful smartphone from LG.",
+        "image": "assets/HuaweiMate40Pro.png",
+        "price": 8990
+    },{
+        "title": "Nokia 8.3 5G",
+        "description": "Super nice and beautiful smartphone from LG.",
+        "image": "assets/Nokia831.png",
+        "price": 6500
+    },{
+        "title": "Samsung Galaxy S21",
+        "description": "Super nice and beautiful smartphone from LG.",
+        "image": "assets/samsungGalaxyS21.png",
+        "price": 9600
+    },{
+        "title": "Samsung Galaxy Z Fold E",
+        "description": "Super nice and beautiful smartphone from LG.",
+        "image": "assets/galaxyZFlip.png",
+        "price": 22690
+    },{
+        "title": "Xiaomi flip phone",
+        "description": "Super nice and beautiful smartphone from LG.",
+        "image": "assets/xiaomiFold.png",
+        "price": 4800
     }
 ]

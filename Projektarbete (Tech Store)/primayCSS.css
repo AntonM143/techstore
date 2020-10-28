@@ -1,72 +1,134 @@
 * {
-    box-sizing: border-box;
+	box-sizing: border-box;
+	font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
+
 }
 
 body {
-    margin: 0;
-  
+	margin: 0;
+}
+
+.loginBtn{
+	background-color: #5596F5;	
+	color: #ffffff;
+	border: none;
+}
+
+.navLeft{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 350px;		
+}
+
+.hLogo {
+	font-family: usual, sans-serif;
+	font-style: normal;
+	font-weight: 600;
+	font-size: 3em;
+}
+
+.hButton {
+	font-size: 2em;
 }
 
 header {
-    width: 100%;
-    height: 10vh;
-    top: 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: black;
-    color: white;
-    padding: 20px;
-    position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	height: 7vh;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	background-color: #212121;
+	color: white;
+	padding: 20px;
+	position: fixed;
 }
 
 main {
-    margin-top: 10vh;
+	margin-top: 7vh;
 }
 
 .column {
-    flex-direction: column;
+	flex-direction: column;
 }
 
 .row {
-    flex-direction: row;
+	flex-direction: row;
 }
 /* Vår produkt container som wrappar alla produkter */
 #productContainer {
-    display: flex;
-    min-height: 90vh;
+	display: flex;
+	/* min-height: 90vh; */
     align-items: center;
-    background-color: lightsalmon; /* For develope purpose */
+    text-align: center;
+	background-color:#FFFFFF; /* For develope purpose */
 }
 
 /* Vårt innehåll i produktkorten, skapat i Javascript stylas här */
 .productCard {
-    background-color: green;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 10vh;
-    width: 30%;
+	background-color: #FFFFFF;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin-top: 10vh;
     border-radius: 5%;
+    font-weight: bold;
 }
 .productCard:last-child {
-    margin-bottom: 10vh;
+	margin-bottom: 10vh;
 }
 .productPrice {
-
+    margin-top: -8px;
+    font-size: 1.2em;
+    font-weight: bolder;
 }
 .productDescr {
-
+    font-size: 1em;
 }
- .productImgContainer {
+.productImgContainer {
     
 }
 .productImg {
-    max-width: 100%;
-    height: 500px;
+	max-width: 100%;
+	height: 86.5vh;
     object-fit: contain;
+    padding: 1em;
 }
 .productTitle {
+    font-size: 4em;
+    margin-bottom: 5px;
+}
+.productButton{
+    display: flex;
+    font-size: 1.7em;
+    height: 7vh;
+    flex-direction: row-reverse;
+    border: none;
+    border-radius: 0.5em;
+    align-items: center;
+    color: #FFFFFF;
+    background-color: #5596F5;
+}
+.fa-cart-arrow-down{
+    text-align: start;
+    flex: 1 0 0;
+    padding: 10px;
+}
+
+@media only screen and (max-width: 600px) {
+	.navLeft{
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		width: 200px;		
+	}
+	
+	.hLogo {
+		font-size: 25px;
+	}
+
 
 }
 
@@ -119,4 +181,5 @@ main {
 .formButtons:active {
     font-size: 1.8em;
 }
+
 
