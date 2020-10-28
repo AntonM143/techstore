@@ -1,15 +1,42 @@
 * {
 	box-sizing: border-box;
+	font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
+
 }
 
 body {
 	margin: 0;
 }
 
+.loginBtn{
+	background-color: #5596F5;	
+	color: #ffffff;
+	border: none;
+}
+
+.navLeft{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 350px;		
+}
+
+.hLogo {
+	font-family: usual, sans-serif;
+	font-style: normal;
+	font-weight: 600;
+	font-size: 3em;
+}
+
+.hButton {
+	font-size: 2em;
+}
+
 header {
-	width: 100%;
-	height: 90px;
 	top: 0;
+	left: 0;
+	right: 0;
+	height: 7vh;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
@@ -20,7 +47,7 @@ header {
 }
 
 main {
-	margin-top: 90px;
+	margin-top: 7vh;
 }
 
 .column {
@@ -89,3 +116,21 @@ main {
     flex: 1 0 0;
     padding: 10px;
 }
+
+@media only screen and (max-width: 600px) {
+	.navLeft{
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		width: 200px;		
+	}
+	
+	.hLogo {
+		font-size: 25px;
+	}
+
+	.hButton {
+		font-size: 20px
+	}
+	
+  }
