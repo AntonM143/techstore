@@ -1,7 +1,7 @@
 let registerButton = document.getElementById("registerButton")
-let loginButton = document.getElementById("loginButton")
 let registerName = document.getElementById("registerCustomer")
 let registerPassword = document.getElementById("registerPassword")
+let loginButton = document.getElementById("loginButton")
 let loginName = document.getElementById("customerName")
 let loginPassword = document.getElementById("customerPassword")
 
@@ -24,16 +24,28 @@ function saveArrayToLocal(arrayToLocal) {
     localStorage.setItem("users", JSON.stringify(arrayToLocal))
 }
 //Funktion som kollar att användare inte redan finns
-function checkUser(nameToCheck, passwordToCheck) { 
+function checkRegisterUser(nameToCheck, passwordToCheck) { 
     let myList = getUserList() 
     
-    listMatch = false
+    registerListMatch = false
     for(i = 0; i < myList.length; i++){
         if(nameToCheck == myList[i].customer && passwordToCheck == myList[i].password || nameToCheck == myList[i].customer){
-            listMatch = true
+            registerListMatch = true
         }
     }
-    return listMatch
+    return registerListMatch
+}
+
+function checkLoginUser(nameToCheck, passwordToCheck) { 
+    let myList = getUserList() 
+    
+    loginListMatch = false
+    for(i = 0; i < myList.length; i++){
+        if(nameToCheck == myList[i].customer && passwordToCheck == myList[i].password){
+            loginListMatch = true
+        }
+    }
+    return loginListMatch
 }
 
 
@@ -52,8 +64,8 @@ function addToArray() {
 //Registrera ny användare
 registerButton.addEventListener("click", () => {
 
-    checkUser(registerName.value, registerPassword.value)
-    if(listMatch == true){
+    checkRegisterUser(registerName.value, registerPassword.value)
+    if(registerListMatch == true){
         console.log("user already exists")
     }
     else if(registerName.value == ""){
@@ -67,4 +79,15 @@ registerButton.addEventListener("click", () => {
     }
 })
 
+loginButton.addEventListener("click", () => {
+    
+    checkLoginUser(loginName.value, loginPassword.value)
+    if(loginListMatch == true){
+        sessionStorage.setItem("customer", loginName.value)
+        window.location = "index.html"
+    }
+    else{
+        console.log("login failed")
+    }
 
+})
