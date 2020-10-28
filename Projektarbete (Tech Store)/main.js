@@ -66,6 +66,9 @@ function cartButton() {
     productButton = document.createElement("button")
     productButton.className = "productButton"
     productButton.innerText = "lägg till i kundvagn"
+    buttonIcon = document.createElement("p")
+    buttonIcon.innerText = "ssss"
+    productButton.appendChild(buttonIcon)
     
     productButton.addEventListener("click", function(product){
         let savedLocalProducts = localStorage.getItem("localProducts") //Hämta localstorage som e sparade under "localProducts"
