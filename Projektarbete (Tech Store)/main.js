@@ -96,13 +96,24 @@ function addProductToCart(myButton) {
 		let localArray = localStorage.getItem("users")
         let activeUser = sessionStorage.getItem("customer")
 		localArray = JSON.parse(localArray)
-
-		for(i = 0; i < localArray.length; i++){
-			if(activeUser == localArray[i].customer){
-				console.log(localArray[i])
-			}	
+		if(activeUser !== null){
+			for(i = 0; i < localArray.length; i++){
+				if(activeUser == localArray[i].customer){
+					console.log(localArray[i])
+					let productToSave = localArray[i]
+					productToSave.cart.push({
+						title: this.localArray,
+						description: "",
+						image: "",
+						price: ""
+					})
+					localStorage.setItem("users", JSON.stringify(localArray))
+				}	
+			}
 		}
-	
+		else{
+			console.log("inte inloggad")
+		}
 	})
 }
 
