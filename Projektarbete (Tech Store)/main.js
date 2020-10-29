@@ -63,10 +63,11 @@ function cartButton() {
     productButton.innerText = "lägg till i kundvagn"
     iconButton = document.createElement("div")
     iconButton.className = "fas fa-cart-arrow-down"
-    productButton.appendChild(iconButton)
-        
-    return productButton
+    productButton.appendChild(iconButton)   
+
+	return productButton
 }
+//Dynamisk login och logut knapp
 function loginLogoutButton() {
 	let loginLogoutBtn = document.getElementById("loginLogoutBtn")
 	let loginIcon = document.createElement("div")
@@ -76,8 +77,7 @@ function loginLogoutButton() {
 		loginLogoutBtn.innerText = "Logga in"
 		loginLogoutBtn.appendChild(loginIcon)
 		loginLogoutBtn.addEventListener("click", () => {
-			window.location = "login.html"
-			
+			window.location = "login.html"	
 		})
 	}	
 	else{
@@ -87,24 +87,39 @@ function loginLogoutButton() {
 			sessionStorage.clear()
 			loginLogoutButton()
 		})
-	
 	}
 }
+function addProductToCart(myButton) {
 
+	myButton.addEventListener("click", () => {
 
+		let localArray = localStorage.getItem("users")
+        let activeUser = sessionStorage.getItem("customer")
+		localArray = JSON.parse(localArray)
 
+		for(i = 0; i < localArray.length; i++){
+			if(activeUser == localArray[i].customer){
+				console.log(localArray[i])
+			}	
+		}
+	
+	})
+}
 
+/* if(activeUser == localArray[i].name){  
+ */
 /** Uses the loaded products data to create a visible product list on the website */
 function addProductsToWebpage() {
 	for (i = 0; i < listOfProducts.length; i++) {
 		createProductCard();
 		cartButton();
-
+		
 		productCard.appendChild(getTitleElement(listOfProducts[i]));
 		productCard.appendChild(getDescriptionElement(listOfProducts[i]));
 		productCard.appendChild(getImgElement(listOfProducts[i]));
 		productCard.appendChild(getPriceElement(listOfProducts[i]));
 		productCard.appendChild(productButton);
+		addProductToCart(productButton)
 	}
 }
 
