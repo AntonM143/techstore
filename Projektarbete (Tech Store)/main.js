@@ -71,27 +71,11 @@ function cartButton() {
     productButton.appendChild(iconButton)
     
     
-    productButton.addEventListener("click", function(product){
-        let savedLocalProducts = localStorage.getItem("localProducts") //Hämta localstorage som e sparade under "localProducts"
-
-        if(savedLocalProducts == null){ // kolla om det finns något i localProducts, om inte skapa en array
-            savedLocalProducts = []
-            console.log("i If")
-        }
-        else { // Om det finns något i localProducts hämta det och parsea det
-            savedLocalProducts = JSON.parse(savedLocalProducts)
-            console.log("i Else")
-        }
-        savedLocalProducts.push({   //Pushar och skapar mitt object in i min array vid namn "savedLocalData"
-/*         title: getTitleElement(product).title
- */
-        
-/*           productTitle.innerText
- */
     
-    })
-    console.log(savedLocalProducts)
-})
+    
+    
+    
+
     
     
     return productButton
@@ -138,16 +122,6 @@ var payChecks = [123,155,134, 205, 105];
 var weeklyPay= getArraySum(payChecks);
 console.log(weeklyPay)
 //
-function getCartList(){
-let savedLocalProducts = localStorage.getItem("localProducts")
-        if(savedLocalProducts == null){
-            savedLocalProducts = []
-            console.log("i If")
-        }
-        else {
-            savedLocalProducts = JSON.parse(savedLocalProducts)
-			console.log("i Else")
-		}
-		return savedLocalProducts;
-	}
-	console.log(getCartList())
+
+let hej = localStorage.getItem("users")
+	console.log(hej)
