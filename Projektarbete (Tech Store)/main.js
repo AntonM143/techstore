@@ -124,3 +124,30 @@ function addProductsToWebpage() {
 }
 
   getCartButton({test:1})  */
+
+//calculate sum of array
+function getArraySum(a){
+    var total=0;
+    for(var i in a) { 
+        total += a[i];
+    }
+    return total;
+}
+
+var payChecks = [123,155,134, 205, 105]; 
+var weeklyPay= getArraySum(payChecks);
+console.log(weeklyPay)
+//
+function getCartList(){
+let savedLocalProducts = localStorage.getItem("localProducts")
+        if(savedLocalProducts == null){
+            savedLocalProducts = []
+            console.log("i If")
+        }
+        else {
+            savedLocalProducts = JSON.parse(savedLocalProducts)
+			console.log("i Else")
+		}
+		return savedLocalProducts;
+	}
+	console.log(getCartList())
