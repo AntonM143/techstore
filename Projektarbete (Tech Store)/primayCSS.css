@@ -8,10 +8,20 @@ body {
 	margin: 0;
 }
 
-.loginBtn{
+#loginLogoutBtn { /* Är inte responsiv i lägre skärmstorlekar */
+    height: 7vh; 
+    min-width: 17vh; /* Kan eventuellt bråka, har satt en min-width för att :active ska funka utan att minska knappen för mycket */
+    margin-left: 20px;
 	background-color: #5596F5;	
 	color: #ffffff;
-	border: none;
+    border: none;
+    font-size: 1.7em;
+    outline: none;                  /* Vi har många knappar med samma styling, kan vara en ide att göra en klass som vi kan återanvända */
+
+
+}
+.loginIcon {
+    margin-left: 10px;
 }
 
 .navLeft{
@@ -19,6 +29,10 @@ body {
 	justify-content: space-between;
 	align-items: center;
 	width: 350px;		
+}
+.navRight {
+    display: flex;
+    align-items: center;
 }
 
 .hLogo {
@@ -42,7 +56,7 @@ header {
 	align-items: center;
 	background-color: #212121;
 	color: white;
-	padding: 20px;
+	padding-left: 20px;
 	position: fixed;
 }
 
@@ -132,6 +146,18 @@ main {
 
 }
 
+/* hover and active functions */
+
+#loginLogoutBtn:hover {
+    box-shadow: inset 0px 0px 20px white;
+    
+
+}
+#loginLogoutBtn:active {
+    box-shadow: inset 0px 0px 60px white;
+    font-size: 1.6em;
+    
+}
 
 
 /* Login page */
@@ -175,7 +201,8 @@ main {
     height: 40px;
     width: 300px;
     font-size: 2em;
-    
+    outline: none;
+
 }
 
 .formButtons:active {
