@@ -61,11 +61,9 @@ function cartButton() {
     productButton = document.createElement("button")
     productButton.className = "productButton"
     productButton.innerText = "lägg till i kundvagn"
-
-	//tror att lösningen till addToCart funktionen finns här
+	//För att få rätt produkt i addToCart
 	let productList = listOfProducts[i]; 
 	productButton.data = productList
-
 	iconButton = document.createElement("div")
     iconButton.className = "fas fa-cart-arrow-down"
     productButton.appendChild(iconButton)   
@@ -106,19 +104,10 @@ function addProductToCart(myButton) {
 			for(i = 0; i < localArray.length; i++){ //Loopar igenom alla sparade kunder
 				if(activeUser == localArray[i].customer){ //Letar efter en match mellan inloggad kund och sparad kund
 					let productToSave = localArray[i]
-					
-
-
-							productToSave.cart.push(
-								myButton.data
-								)
-					
-					
-						
+					productToSave.cart.push(myButton.data)	
 					localStorage.setItem("users", JSON.stringify(localArray))
 					console.log(myButton.data)
 				}	
-
 			}
 		}
 		else{
