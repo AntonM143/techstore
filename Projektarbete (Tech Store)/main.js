@@ -61,7 +61,12 @@ function cartButton() {
     productButton = document.createElement("button")
     productButton.className = "productButton"
     productButton.innerText = "lägg till i kundvagn"
-    iconButton = document.createElement("div")
+
+	//tror att lösningen till addToCart funktionen finns här
+	let productList = listOfProducts[i]; 
+	productButton.data = productList
+
+	iconButton = document.createElement("div")
     iconButton.className = "fas fa-cart-arrow-down"
     productButton.appendChild(iconButton)   
 
@@ -89,26 +94,31 @@ function loginLogoutButton() {
 		})
 	}
 }
+
+
 function addProductToCart(myButton) {
 
 	myButton.addEventListener("click", () => {
-
 		let localArray = localStorage.getItem("users")
         let activeUser = sessionStorage.getItem("customer")
 		localArray = JSON.parse(localArray)
 		if(activeUser !== null){
-			for(i = 0; i < localArray.length; i++){
-				if(activeUser == localArray[i].customer){
-					console.log(localArray[i])
+			for(i = 0; i < localArray.length; i++){ //Loopar igenom alla sparade kunder
+				if(activeUser == localArray[i].customer){ //Letar efter en match mellan inloggad kund och sparad kund
 					let productToSave = localArray[i]
-					productToSave.cart.push({
-						title: this.localArray,
-						description: "",
-						image: "",
-						price: ""
-					})
+					
+
+
+							productToSave.cart.push(
+								myButton.data
+								)
+					
+					
+						
 					localStorage.setItem("users", JSON.stringify(localArray))
+					console.log(myButton.data)
 				}	
+
 			}
 		}
 		else{
@@ -117,8 +127,6 @@ function addProductToCart(myButton) {
 	})
 }
 
-/* if(activeUser == localArray[i].name){  
- */
 /** Uses the loaded products data to create a visible product list on the website */
 function addProductsToWebpage() {
 	for (i = 0; i < listOfProducts.length; i++) {
