@@ -12,12 +12,12 @@ function loadProducts() {
 			addProductsToWebpage();
 		});
 }
-
 function initSite() {
 	loadProducts();
+	loginLogoutButton()
+
 	// This would also be a good place to initialize other parts of the UI
 }
-
 //Create Title Element and get content
 function getTitleElement(product) {
 	productTitle = document.createElement('h2');
@@ -25,7 +25,6 @@ function getTitleElement(product) {
 	productTitle.innerText = product.title;
 	return productTitle;
 }
-
 //Create Price element and get content
 function getPriceElement(product) {
 	productPrice = document.createElement('p');
@@ -33,7 +32,6 @@ function getPriceElement(product) {
 	productPrice.innerText = product.price + ':-';
 	return productPrice;
 }
-
 //Create Description element and get content
 function getDescriptionElement(product) {
 	productDescr = document.createElement('div');
@@ -41,7 +39,6 @@ function getDescriptionElement(product) {
 	productDescr.innerText = product.description;
 	return productDescr;
 }
-
 // Create IMG element append to parent container div and get source
 function getImgElement(product) {
 	productImgContainer = document.createElement('div');
@@ -52,7 +49,6 @@ function getImgElement(product) {
 	productImgContainer.appendChild(productImg);
 	return productImgContainer;
 }
-
 //Create productCard and append it to productContainer
 function createProductCard() {
 	productCard = document.createElement('div');
@@ -60,41 +56,64 @@ function createProductCard() {
 	productContainer.appendChild(productCard);
 	return productCard;
 }
-
 // Create a button
 function cartButton() {
     productButton = document.createElement("button")
     productButton.className = "productButton"
     productButton.innerText = "lägg till i kundvagn"
-    iconButton = document.createElement("div")
+	//För att få rätt produkt i addToCart
+	let productList = listOfProducts[i]; 
+	productButton.data = productList
+	iconButton = document.createElement("div")
     iconButton.className = "fas fa-cart-arrow-down"
-    productButton.appendChild(iconButton)
-    
-    
-    productButton.addEventListener("click", function(product){
-        let savedLocalProducts = localStorage.getItem("localProducts") //Hämta localstorage som e sparade under "localProducts"
+    productButton.appendChild(iconButton)   
 
-        if(savedLocalProducts == null){ // kolla om det finns något i localProducts, om inte skapa en array
-            savedLocalProducts = []
-            console.log("i If")
-        }
-        else { // Om det finns något i localProducts hämta det och parsea det
-            savedLocalProducts = JSON.parse(savedLocalProducts)
-            console.log("i Else")
-        }
-        savedLocalProducts.push({   //Pushar och skapar mitt object in i min array vid namn "savedLocalData"
-/*         title: getTitleElement(product).title
- */
-        
-/*           productTitle.innerText
- */
-    
-    })
-    console.log(savedLocalProducts)
-})
-    
-    
-    return productButton
+	return productButton
+}
+//Dynamisk login och logut knapp
+function loginLogoutButton() {
+	let loginLogoutBtn = document.getElementById("loginLogoutBtn")
+	let loginIcon = document.createElement("div")
+	loginIcon.className = "fas fa-sign-in-alt loginIcon"
+	
+	if(sessionStorage.customer == null){
+		loginLogoutBtn.innerText = "Logga in"
+		loginLogoutBtn.appendChild(loginIcon)
+		loginLogoutBtn.addEventListener("click", () => {
+			window.location = "login.html"	
+		})
+	}	
+	else{
+		loginLogoutBtn.innerText ="Logga ut"
+		loginLogoutBtn.appendChild(loginIcon)
+		loginLogoutBtn.addEventListener("click", () => {
+			sessionStorage.clear()
+			loginLogoutButton()
+		})
+	}
+}
+
+
+function addProductToCart(myButton) {
+
+	myButton.addEventListener("click", () => {
+		let localArray = localStorage.getItem("users")
+        let activeUser = sessionStorage.getItem("customer")
+		localArray = JSON.parse(localArray)
+		if(activeUser !== null){
+			for(i = 0; i < localArray.length; i++){ //Loopar igenom alla sparade kunder
+				if(activeUser == localArray[i].customer){ //Letar efter en match mellan inloggad kund och sparad kund
+					let productToSave = localArray[i]
+					productToSave.cart.push(myButton.data)	
+					localStorage.setItem("users", JSON.stringify(localArray))
+					console.log(myButton.data)
+				}	
+			}
+		}
+		else{
+			console.log("inte inloggad")
+		}
+	})
 }
 
 /** Uses the loaded products data to create a visible product list on the website */
@@ -102,25 +121,14 @@ function addProductsToWebpage() {
 	for (i = 0; i < listOfProducts.length; i++) {
 		createProductCard();
 		cartButton();
-
+		
 		productCard.appendChild(getTitleElement(listOfProducts[i]));
 		productCard.appendChild(getDescriptionElement(listOfProducts[i]));
 		productCard.appendChild(getImgElement(listOfProducts[i]));
 		productCard.appendChild(getPriceElement(listOfProducts[i]));
 		productCard.appendChild(productButton);
+		addProductToCart(productButton)
 	}
 }
 
-/* function getCartButton(product) {
-    let productButton = document.createElement("button")
-    productContainer.appendChild(productButton) // for developing, change to correct container once done
-    productButton.className = "productButton"
-    productButton.innerText = "lägg till i kundvagn"
-    productButton.data = JSON.stringify(product)
-    productButton.addEventListener("click", function(bla){
 
-        console.log(bla.target.data)
-    })
-}
-
-  getCartButton({test:1})  */
