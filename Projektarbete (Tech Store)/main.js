@@ -144,8 +144,8 @@ function totalProducts(){
 	prodValue = localArray[0]["cart"]
 
 		for (let i = 0; prodValue.length > i; i ++){
-			let siffra = document.getElementById("textInside")
-			siffra.innerText = prodValue.length
+			let counter = document.getElementById("counterCart")
+			counter.innerText = prodValue.length
 			console.log(prodValue.length);
 		}
 }
