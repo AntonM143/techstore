@@ -107,6 +107,7 @@ function addProductToCart(myButton) {
 					productToSave.cart.push(myButton.data)	
 					localStorage.setItem("users", JSON.stringify(localArray))
 					console.log(myButton.data)
+					totalProducts()
 				}	
 			}
 		}
@@ -132,3 +133,25 @@ function addProductsToWebpage() {
 }
 
 
+function totalProducts(){
+
+
+	let localArray = localStorage.getItem("users")
+	let activeUser = sessionStorage.getItem("customer")
+	let prodValue
+	localArray = JSON.parse(localArray)
+
+	prodValue = localArray[0]["cart"]
+
+
+	for (let i = 0; prodValue.length > i; i ++){
+		let siffra = document.getElementById("textInside")
+		siffra.innerText = prodValue.length
+		console.log(prodValue);
+
+	}
+
+	
+
+
+}
