@@ -107,6 +107,7 @@ function addProductToCart(myButton) {
 					productToSave.cart.push(myButton.data)	
 					localStorage.setItem("users", JSON.stringify(localArray))
 					console.log(myButton.data)
+
 				}	
 			}
 		}
@@ -130,5 +131,3 @@ function addProductsToWebpage() {
 		addProductToCart(productButton)
 	}
 }
-
-
