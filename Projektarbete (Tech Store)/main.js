@@ -15,6 +15,11 @@ function loadProducts() {
 function initSite() {
 	loadProducts();
 	loginLogoutButton()
+	
+	
+	
+
+	
 
 	// This would also be a good place to initialize other parts of the UI
 }
@@ -88,6 +93,8 @@ function loginLogoutButton() {
 		loginLogoutBtn.appendChild(loginIcon)
 		loginLogoutBtn.addEventListener("click", () => {
 			sessionStorage.clear()
+			let counter = document.getElementById("counterCart")
+			counter.innerText = ""
 			loginLogoutButton()
 		})
 	}
@@ -108,11 +115,13 @@ function addProductToCart(myButton) {
 					localStorage.setItem("users", JSON.stringify(localArray))
 					console.log(myButton.data)
 					totalProducts()
+					
 				}	
 			}
 		}
 		else{
 			console.log("inte inloggad")
+			
 		}
 	})
 }
@@ -133,19 +142,38 @@ function addProductsToWebpage() {
 }
 
 
+/*  function totalProducts(){
+ 
+    let localArray = localStorage.getItem("users")
+    let activeUser = sessionStorage.getItem("customer")
+    localArray = JSON.parse(localArray)
+	currentCounter = localArray.cart 
+		currentCounter = localArray.cart
+		
+			for (let i = 0; i < currentCounter.length ; i ++){
+				if(activeUser.customer == localArray[i].costumer){
+				 let counter = document.getElementById("counterCart")
+				 counter.innerText = currentCounter.length 
+			}
+    	}	
+	} */
+
 function totalProducts(){
+ 
+    let localArray = localStorage.getItem("users")
+    let activeUser = sessionStorage.getItem("customer")
+    localArray = JSON.parse(localArray)
+    currentCounter = localArray[i].cart
+ 
+        for (let i = 0; i < currentCounter.length ; i ++){
 
+            if(activeUser.customer == localArray[i]){
 
-	let localArray = localStorage.getItem("users")
-	let activeUser = sessionStorage.getItem("customer")
-	let prodValue
-
-	localArray = JSON.parse(localArray)
-	prodValue = localArray[0]["cart"]
-
-		for (let i = 0; prodValue.length > i; i ++){
-			let counter = document.getElementById("counterCart")
-			counter.innerText = prodValue.length
-			console.log(prodValue.length);
-		}
+            	let counter = document.getElementById("counterCart")
+            	counter.innerText = currentCounter.length 
+        
+        		console.log(localArray[i])
+    
+            }
+        }
 }
