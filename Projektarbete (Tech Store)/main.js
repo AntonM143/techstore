@@ -10,6 +10,7 @@ function loadProducts() {
 		.then(function (products) {
 			listOfProducts = products;
 			addProductsToWebpage();
+			
 		});
 }
 function initSite() {
@@ -17,10 +18,6 @@ function initSite() {
 	loginLogoutButton()
 	
 	
-	
-
-	
-
 	// This would also be a good place to initialize other parts of the UI
 }
 //Create Title Element and get content
@@ -86,7 +83,7 @@ function loginLogoutButton() {
 		loginLogoutBtn.appendChild(loginIcon)
 		loginLogoutBtn.addEventListener("click", () => {
 			window.location = "login.html"	
-
+			
 		})
 	}	
 	else{
@@ -117,6 +114,7 @@ function addProductToCart(myButton) {
 					console.log(myButton.data)
 					totalProducts()
 					
+					
 				}	
 			}
 		}
@@ -132,7 +130,6 @@ function addProductsToWebpage() {
 	for (i = 0; i < listOfProducts.length; i++) {
 		createProductCard();
 		cartButton();
-		
 		productCard.appendChild(getTitleElement(listOfProducts[i]));
 		productCard.appendChild(getDescriptionElement(listOfProducts[i]));
 		productCard.appendChild(getImgElement(listOfProducts[i]));
@@ -142,36 +139,23 @@ function addProductsToWebpage() {
 	}
 }
 
-
-/*  function totalProducts(){
- 
-    let localArray = localStorage.getItem("users")
-    let activeUser = sessionStorage.getItem("customer")
-    localArray = JSON.parse(localArray)
-	currentCounter = localArray.cart 
-		currentCounter = localArray.cart
-		
-			for (let i = 0; i < currentCounter.length ; i ++){
-				if(activeUser.customer == localArray[i].costumer){
-				 let counter = document.getElementById("counterCart")
-				 counter.innerText = currentCounter.length 
-			}
-    	}	
-	} */
-
 function totalProducts(){
- 
+	
     let localArray = localStorage.getItem("users")
     let activeUser = sessionStorage.getItem("customer")
     localArray = JSON.parse(localArray)
-    currentCounter = localArray[i].cart
- 
+	currentCounter = localArray[i].cart
+	
+	
         for (let i = 0; i < currentCounter.length ; i ++){
+			pricePerProduct = currentCounter[i].price
+            let counter = document.getElementById("counterCart")
+            counter.innerText = currentCounter.length 
+			console.log(currentCounter.length)
+			console.log(pricePerProduct)
 
-            	let counter = document.getElementById("counterCart")
-            	counter.innerText = currentCounter.length 
-        
-        		console.log(currentCounter.length)
+
+		
         }
 }
 
