@@ -113,6 +113,18 @@ function addProductToCart(myButton) {
 		}
 		else{
 			console.log("inte inloggad")
+			let noUserCart = localStorage.getItem("noUserCart")
+			//Om localstorage är tom, skapa en array
+			if(noUserCart == null) {
+				noUserCart = []
+			}
+			//Om localStorage finns, hämta och omvandla
+			else {
+				noUserCart = JSON.parse(noUserCart)
+			} 
+			noUserCart.push(myButton.data)	
+			localStorage.setItem("noUserCart", JSON.stringify(noUserCart))
+			console.log(noUserCart)
 		}
 	})
 }
