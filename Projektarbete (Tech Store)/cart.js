@@ -23,7 +23,8 @@
 		}	
 	}
 	else{
-		console.log("ended up in else")
+        console.log("ended up in else")
+        //Möjglitvis skapa en funktion som räknar priser på produkter som inte är sparade till användare
 	}
  }
 
