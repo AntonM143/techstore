@@ -86,6 +86,7 @@ function loginLogoutButton() {
 		loginLogoutBtn.appendChild(loginIcon)
 		loginLogoutBtn.addEventListener("click", () => {
 			window.location = "login.html"	
+
 		})
 	}	
 	else{
@@ -167,13 +168,11 @@ function totalProducts(){
  
         for (let i = 0; i < currentCounter.length ; i ++){
 
-            if(activeUser.customer == localArray[i]){
-
             	let counter = document.getElementById("counterCart")
             	counter.innerText = currentCounter.length 
         
-        		console.log(localArray[i])
-    
-            }
+        		console.log(currentCounter.length)
         }
 }
+
+
