@@ -18,6 +18,7 @@ function initSite() {
 	loginLogoutButton()
 	
 	
+	
 	// This would also be a good place to initialize other parts of the UI
 }
 //Create Title Element and get content
@@ -142,20 +143,15 @@ function addProductsToWebpage() {
 function totalProducts(){
 	
     let localArray = localStorage.getItem("users")
-    let activeUser = sessionStorage.getItem("customer")
     localArray = JSON.parse(localArray)
 	currentCounter = localArray[i].cart
-	
 	
         for (let i = 0; i < currentCounter.length ; i ++){
 			pricePerProduct = currentCounter[i].price
             let counter = document.getElementById("counterCart")
             counter.innerText = currentCounter.length 
 			console.log(currentCounter.length)
-			console.log(pricePerProduct)
 
-
-		
         }
 }
 
