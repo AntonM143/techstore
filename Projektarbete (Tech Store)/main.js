@@ -10,12 +10,13 @@ function loadProducts() {
 		.then(function (products) {
 			listOfProducts = products;
 			addProductsToWebpage();
+			
 		});
 }
 function initSite() {
 	loadProducts();
 	loginLogoutButton()
-
+	cartCounter()
 	// This would also be a good place to initialize other parts of the UI
 }
 //Create Title Element and get content
@@ -81,6 +82,7 @@ function loginLogoutButton() {
 		loginLogoutBtn.appendChild(loginIcon)
 		loginLogoutBtn.addEventListener("click", () => {
 			window.location = "login.html"	
+			
 		})
 	}	
 	else{
@@ -88,6 +90,8 @@ function loginLogoutButton() {
 		loginLogoutBtn.appendChild(loginIcon)
 		loginLogoutBtn.addEventListener("click", () => {
 			sessionStorage.clear()
+			let counter = document.getElementById("counterCart")
+			counter.innerText = ""
 			loginLogoutButton()
 		})
 	}
@@ -107,12 +111,14 @@ function addProductToCart(myButton) {
 					productToSave.cart.push(myButton.data)	
 					localStorage.setItem("users", JSON.stringify(localArray))
 					console.log(myButton.data)
-
+					cartCounter()
+      
 				}	
 			}
 		}
 		else{
 			console.log("inte inloggad")
+
 			let noUserCart = localStorage.getItem("noUserCart")
 			//Om localstorage är tom, skapa en array
 			if(noUserCart == null) {
@@ -125,6 +131,7 @@ function addProductToCart(myButton) {
 			noUserCart.push(myButton.data)	
 			localStorage.setItem("noUserCart", JSON.stringify(noUserCart))
 			console.log(noUserCart)
+
 		}
 	})
 }
@@ -134,7 +141,6 @@ function addProductsToWebpage() {
 	for (i = 0; i < listOfProducts.length; i++) {
 		createProductCard();
 		cartButton();
-		
 		productCard.appendChild(getTitleElement(listOfProducts[i]));
 		productCard.appendChild(getDescriptionElement(listOfProducts[i]));
 		productCard.appendChild(getImgElement(listOfProducts[i]));
@@ -143,3 +149,31 @@ function addProductsToWebpage() {
 		addProductToCart(productButton)
 	}
 }
+
+
+function cartCounter(){
+
+	let localArray = localStorage.getItem("users")
+	let activeUser = sessionStorage.getItem("customer")
+	localArray = JSON.parse(localArray)
+	
+		if(activeUser !== null){
+
+			for(i = 0; i < localArray.length; i++){ //Loopar igenom alla sparade kunder
+
+				if(activeUser == localArray[i].customer){ //Letar efter en match mellan inloggad kund och sparad kund
+					
+					currentCounter = localArray[i].cart
+			
+					for ( let i = 0; i < currentCounter.length ; i ++){
+						pricePerProduct = currentCounter[i].price
+						let counter = document.getElementById("counterCart")
+						counter.innerText = currentCounter.length 
+						console.log(currentCounter.length)
+					}
+				}	
+			}
+		}
+
+}
+
