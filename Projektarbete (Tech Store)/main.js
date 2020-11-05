@@ -112,14 +112,26 @@ function addProductToCart(myButton) {
 					localStorage.setItem("users", JSON.stringify(localArray))
 					console.log(myButton.data)
 					cartCounter()
-					
-					
+      
 				}	
 			}
 		}
 		else{
 			console.log("inte inloggad")
-			
+
+			let noUserCart = localStorage.getItem("noUserCart")
+			//Om localstorage är tom, skapa en array
+			if(noUserCart == null) {
+				noUserCart = []
+			}
+			//Om localStorage finns, hämta och omvandla
+			else {
+				noUserCart = JSON.parse(noUserCart)
+			} 
+			noUserCart.push(myButton.data)	
+			localStorage.setItem("noUserCart", JSON.stringify(noUserCart))
+			console.log(noUserCart)
+
 		}
 	})
 }
@@ -137,7 +149,6 @@ function addProductsToWebpage() {
 		addProductToCart(productButton)
 	}
 }
-
 
 
 function cartCounter(){
@@ -165,3 +176,4 @@ function cartCounter(){
 		}
 
 }
+
