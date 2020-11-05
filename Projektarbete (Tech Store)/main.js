@@ -16,9 +16,7 @@ function loadProducts() {
 function initSite() {
 	loadProducts();
 	loginLogoutButton()
-	
-	
-	
+	cartCounter()
 	// This would also be a good place to initialize other parts of the UI
 }
 //Create Title Element and get content
@@ -113,7 +111,7 @@ function addProductToCart(myButton) {
 					productToSave.cart.push(myButton.data)	
 					localStorage.setItem("users", JSON.stringify(localArray))
 					console.log(myButton.data)
-					totalProducts()
+					cartCounter()
 					
 					
 				}	
@@ -140,19 +138,30 @@ function addProductsToWebpage() {
 	}
 }
 
-function totalProducts(){
-	
-    let localArray = localStorage.getItem("users")
-    localArray = JSON.parse(localArray)
-	currentCounter = localArray[i].cart
-	
-        for (let i = 0; i < currentCounter.length ; i ++){
-			pricePerProduct = currentCounter[i].price
-            let counter = document.getElementById("counterCart")
-            counter.innerText = currentCounter.length 
-			console.log(currentCounter.length)
 
-        }
+
+function cartCounter(){
+
+	let localArray = localStorage.getItem("users")
+	let activeUser = sessionStorage.getItem("customer")
+	localArray = JSON.parse(localArray)
+	
+		if(activeUser !== null){
+
+			for(i = 0; i < localArray.length; i++){ //Loopar igenom alla sparade kunder
+
+				if(activeUser == localArray[i].customer){ //Letar efter en match mellan inloggad kund och sparad kund
+					
+					currentCounter = localArray[i].cart
+			
+					for ( let i = 0; i < currentCounter.length ; i ++){
+						pricePerProduct = currentCounter[i].price
+						let counter = document.getElementById("counterCart")
+						counter.innerText = currentCounter.length 
+						console.log(currentCounter.length)
+					}
+				}	
+			}
+		}
+
 }
-
-
