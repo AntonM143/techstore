@@ -82,15 +82,26 @@ main {
 }
 
 /* Vårt innehåll i produktkorten, skapat i Javascript stylas här */
-.productCard {
+
+.productCard
+ {
 	background-color: #FFFFFF;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	margin-top: 10vh;
-    border-radius: 5%;
-    font-weight: bold;
+    width: 100%;
+    font-weight: bold;  
 }
+
+
+.productCard:nth-child(odd) 
+ {
+	background-color: #F5F5F5;
+	
+    
+}
+
 .productCard:last-child {
 	margin-bottom: 10vh;
 }
@@ -105,6 +116,7 @@ main {
 .productImgContainer {
     
 }
+
 .productImg {
 	max-width: 100%;
 	height: 86.5vh;
@@ -119,6 +131,7 @@ main {
     display: flex;
     font-size: 1.7em;
     height: 7vh;
+    margin-bottom: 20px;
     flex-direction: row-reverse;
     border: none;
     border-radius: 0.5em;
@@ -222,3 +235,9 @@ a:visited {
 #counterCart{
     margin: 10px;
 }
+
+
+
+
+
+
