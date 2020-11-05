@@ -133,6 +133,16 @@ main {
     padding: 10px;
 }
 
+a:link {
+    text-decoration: none;
+    color: white;
+    
+}
+a:visited {
+    text-decoration: none;
+    color: white
+}
+
 @media only screen and (max-width: 600px) {
 	.navLeft{
 		display: flex;

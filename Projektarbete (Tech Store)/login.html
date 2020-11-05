@@ -9,13 +9,22 @@
         
         <!-- Visit www.fontawesome.com on how to add font icons to your project -->
         <!-- Link your stylesheet file/files, do NOT write styles in the html file! -->
+        <link rel="stylesheet" href="https://use.typekit.net/lxe5rkg.css"/>
         <link rel="stylesheet" href="primayCSS.css">
         <script defer src="./login.js"></script>
     </head>
     <body>
         <header>
-            <div class="hLogo">Techstore</div>
-            <div class="hButton">s</div>                    <!-- Your header title and shopping cart button goes here  -->
+            <div class="navLeft">
+				<a href="./index.html"><div class="hLogo">Techstore</div></a>
+			</div>
+
+            <div class="navRight">
+				<div>
+					<h1 id="counterCart"></h1>
+				</div>
+                <div class="hButton"><i class="fas fa-shopping-cart"></i></div>
+            </div>                 <!-- Your header title and shopping cart button goes here  -->
         </header>
 
         <main>
