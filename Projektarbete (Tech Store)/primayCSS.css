@@ -82,15 +82,23 @@ main {
 }
 
 /* Vårt innehåll i produktkorten, skapat i Javascript stylas här */
-.productCard {
-	background-color: #FFFFFF;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	margin-top: 10vh;
-    border-radius: 5%;
-    font-weight: bold;
+.productCard
+ {
+ background-color: #FFFFFF;
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+ padding: 5vh;
+ width: 100%;
+ font-weight: bold; 
 }
+ 
+.productCard:nth-child(even) 
+ {
+ background-color: #F5F5F5;
+ 
+}
+
 .productCard:last-child {
 	margin-bottom: 10vh;
 }
@@ -125,7 +133,8 @@ main {
     align-items: center;
     color: #FFFFFF;
     background-color: #5596F5;
-    outline: none;                  /* Vi har många knappar med samma styling, kan vara en ide att göra en klass som vi kan återanvända */
+    outline: none;     
+    margin-bottom: 30px;             /* Vi har många knappar med samma styling, kan vara en ide att göra en klass som vi kan återanvända */
 }
 .fa-cart-arrow-down{
     text-align: start;
