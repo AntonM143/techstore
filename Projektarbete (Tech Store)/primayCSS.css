@@ -125,7 +125,7 @@ main {
     align-items: center;
     color: #FFFFFF;
     background-color: #5596F5;
-    outline: none;                  /* Vi har många knappar med samma styling, kan vara en ide att göra en klass som vi kan återanvända */
+    outline: none; /* Vi har många knappar med samma styling, kan vara en ide att göra en klass som vi kan återanvända */
 }
 .fa-cart-arrow-down{
     text-align: start;
