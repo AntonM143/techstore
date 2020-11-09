@@ -1,5 +1,26 @@
- import {bajs}  from "./main.js"
- 
+import {loginLogoutButton, cartCounter} from "./main.js"
+let body = document.getElementById("cartBody")
+window.addEventListener("load", initSite)
+
+function initSite() {
+	if (body){
+		console.log("cartBody detected")
+		allPrices()
+		loginLogoutButton()
+		cartCounter()
+	}
+}
+
+function printCart() {
+
+
+	if(cart.length > 0) {
+		for(let i = 0; i < cart.length; i++ ){
+
+		}
+	}	
+}
+
 
 function allPrices() {
 	let userList = localStorage.getItem("users")
@@ -31,4 +52,3 @@ function allPrices() {
 	}
  }
 
- allPrices()

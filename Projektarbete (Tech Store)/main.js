@@ -1,5 +1,6 @@
 window.addEventListener("load", initSite)
 var listOfProducts;
+let body = document.getElementById("indexBody")
 let productContainer = document.getElementById('productContainer');
 
 
@@ -16,10 +17,12 @@ function loadProducts() {
 		});
 }
 function initSite() {
-	console.log("initSite done")
-	loadProducts();
-	loginLogoutButton()
-	cartCounter()
+	if (body){
+		loadProducts();
+		loginLogoutButton()
+		cartCounter()
+		console.log("indexBody detected")
+	}
 }
 //Create Title Element and get content
 function getTitleElement(product) {
@@ -158,7 +161,7 @@ function addProductsToWebpage() {
 }
 
 
-function cartCounter(){
+export function cartCounter(){
 
 	let localArray = localStorage.getItem("users")
 	let activeUser = sessionStorage.getItem("customer")
@@ -182,10 +185,4 @@ function cartCounter(){
 		}
 
 }
-
-export function bajs() {
-
-	console.log("bajs")
-	return
-} 
 
