@@ -93,6 +93,7 @@ function loginLogoutButton() {
 			let counter = document.getElementById("counterCart")
 			counter.innerText = ""
 			loginLogoutButton()
+			cartCounter()
 		})
 	}
 }
