@@ -143,6 +143,7 @@ function addProductToCart(product) {
 		noUserCart.push(product)	
 		localStorage.setItem("noUserCart", JSON.stringify(noUserCart))
 		console.log(noUserCart)
+		cartCounter()
 
 	}
 
