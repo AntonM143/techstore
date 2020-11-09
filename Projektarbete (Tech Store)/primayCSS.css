@@ -123,7 +123,8 @@ main {
     font-size: 4em;
     margin-bottom: 5px;
 }
-.productButton{
+
+.productButton, .btnConfirm{
     display: flex;
     font-size: 1.7em;
     height: 7vh;
@@ -169,11 +170,11 @@ a:visited {
 
 /* hover and active functions */
 
-#loginLogoutBtn:hover, .productButton:hover {
+#loginLogoutBtn:hover, .productButton:hover, .btnConfirm:hover {
     box-shadow: inset 0px 0px 20px white;
 }
 
-#loginLogoutBtn:active, .productButton:active {
+#loginLogoutBtn:active, .productButton:active, .btnConfirm:active {
     box-shadow: inset 0px 0px 60px white;
     font-size: 1.6em; 
 }
@@ -249,3 +250,4 @@ a:visited {
     font-weight: 600;
     font-size: 2em;
 }
+
