@@ -103,12 +103,14 @@ export function loginLogoutButton() {
 			let counter = document.getElementById("counterCart")
 			counter.innerText = ""
 			loginLogoutButton()
+			cartCounter()
 		})
 	}
 }
 
 
 function addProductToCart(product) {
+
 
 	
 	let localArray = localStorage.getItem("users")
@@ -143,6 +145,7 @@ function addProductToCart(product) {
 		console.log(noUserCart)
 
 	}
+
 }
 
 /** Uses the loaded products data to create a visible product list on the website */
@@ -173,16 +176,28 @@ export function cartCounter(){
 
 				if(activeUser == localArray[i].customer){ //Letar efter en match mellan inloggad kund och sparad kund
 					
+
 					let currentCounter = localArray[i].cart
 			
 					for ( let i = 0; i < currentCounter.length ; i ++){
+
 						let counter = document.getElementById("counterCart")
 						counter.innerText = currentCounter.length 
 						console.log(currentCounter.length)
 					}
 				}	
 			}
-		}
 
+		}else {
+			let noUserCart = localStorage.getItem("noUserCart")
+			noUserCart = JSON.parse(noUserCart)
+				if(noUserCart !== null){	
+					for(let i = 0; i < noUserCart.length; i++){
+						let counter = document.getElementById("counterCart")
+						counter.innerText = noUserCart.length 
+						console.log(noUserCart.length)
+					}	
+				}
+		}
 }
 
