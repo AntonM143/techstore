@@ -119,6 +119,7 @@ main {
     object-fit: contain;
     padding: 1em;
 }
+
 .productTitle {
     font-size: 4em;
     margin-bottom: 5px;
@@ -153,20 +154,32 @@ a:visited {
     color: white
 }
 
-@media only screen and (max-width: 600px) {
-	.navLeft{
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		width: 200px;		
-	}
-	
-	.hLogo {
-		font-size: 25px;
-	}
+/* Cart styling */
 
-
+#cartProducts {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
 }
+
+.cartProdCard {
+    min-width: 15vw;
+    padding: 10px;
+    margin-right: 50px;
+    border: 2px solid #5596F5;
+    border-radius: 15px;
+    background-color: #F5F5F5;
+}
+
+.cartImg {
+    height: 20vh;
+}
+
+
+
+
 
 /* hover and active functions */
 
@@ -251,3 +264,27 @@ a:visited {
     font-size: 2em;
 }
 
+
+
+
+
+
+
+
+
+
+
+@media only screen and (max-width: 600px) {
+	.navLeft{
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		width: 200px;		
+	}
+	
+	.hLogo {
+		font-size: 25px;
+	}
+
+
+}

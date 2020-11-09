@@ -1,7 +1,9 @@
-
-import {loginLogoutButton, cartCounter} from "./main.js"
+import {loginLogoutButton, cartCounter, getTitleElement, getPriceElement, getDescriptionElement, getImgElement, createProductCard} from "./main.js"
 let body = document.getElementById("cartBody")
 window.addEventListener("load", initSite)
+let userList = localStorage.getItem("users")
+let activeUser = sessionStorage.getItem("customer")
+
 
 function initSite() {
 	if (body){
@@ -14,17 +16,31 @@ function initSite() {
 
 	}
 }
-
+//Printa ut kundvagn på sidan, importera funktioner från main som skapar element och ändra parametern(produkt) till rätt local key
 function printCart() {
+	userList = JSON.parse(userList)
+	let cartDiv = document.getElementById("cartProducts")
+	
+	if(userList !== null){
+		for (let i = 0; i < userList.length; i++){
+			if(activeUser == userList[i].customer) {
+				console.log ("****match found**** ", userList[i].customer, activeUser)
+				let cart = userList[i].cart
+					if(cart !== null){
+						for(let i = 0; i < cart.length; i++){
+							console.log("loopar carten")
+							let productCard = createProductCard("cartProdCard", cartProducts)
 
-
-	if(cart.length > 0) {
-		for(let i = 0; i < cart.length; i++ ){
-
-		}
-	}	
+							productCard.appendChild(getImgElement(cart[i], "cartImg"))
+							productCard.appendChild(getTitleElement(cart[i]))
+							productCard.appendChild(getPriceElement(cart[i]))
+						}
+					}
+			}
+		}	
+	}
 }
-
+printCart()
 
 
 function allPrices() {
