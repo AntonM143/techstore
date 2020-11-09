@@ -16,6 +16,7 @@ function initSite() {
 
 	}
 }
+//Att göra: skapa en funktion som skapar en ta bort produkt knapp
 //Printa ut kundvagn på sidan, importera funktioner från main som skapar element och ändra parametern(produkt) till rätt local key
 function printCart() {
 	userList = JSON.parse(userList)
@@ -29,7 +30,7 @@ function printCart() {
 					if(cart !== null){
 						for(let i = 0; i < cart.length; i++){
 							console.log("loopar carten")
-							let productCard = createProductCard("cartProdCard", cartProducts)
+							let productCard = createProductCard("cartProdCard", cartDiv)
 
 							productCard.appendChild(getImgElement(cart[i], "cartImg"))
 							productCard.appendChild(getTitleElement(cart[i]))
@@ -38,7 +39,8 @@ function printCart() {
 					}
 			}
 		}	
-	}
+	}//Skapa else för noUserCart och se till att alla if/else funkar utan buggar
+
 }
 printCart()
 

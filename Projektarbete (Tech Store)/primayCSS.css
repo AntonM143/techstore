@@ -138,6 +138,9 @@ main {
     outline: none;     
     margin-bottom: 30px;             /* Vi har många knappar med samma styling, kan vara en ide att göra en klass som vi kan återanvända */
 }
+.btnConfirm {
+    /* Knappen måste ges mer utrymme, padding/margin så att inte icon och knapp ligger klossan */
+}
 .fa-cart-arrow-down{
     text-align: start;
     flex: 1 0 0;
@@ -162,6 +165,8 @@ a:visited {
     width: 100%;
     align-items: center;
     justify-content: center;
+    flex-wrap: wrap;
+
 }
 
 .cartProdCard {
@@ -171,6 +176,7 @@ a:visited {
     border: 2px solid #5596F5;
     border-radius: 15px;
     background-color: #F5F5F5;
+    margin-bottom: 30px;
 }
 
 .cartImg {
