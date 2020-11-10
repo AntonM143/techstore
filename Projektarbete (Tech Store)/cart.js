@@ -113,9 +113,12 @@ function confirmbtn (){
 	if(noUserList || userList) {
 		let confirm = document.getElementById("confirmBtn");
 		let btn = document.createElement("button");
-		btn.className = "btnConfirm fas fa-check"
-		btn.innerText = "Slutför ditt köp!"
+		let iconBtn = document.createElement("div")
+		iconBtn.className = "fas fa-check"
+		btn.className = "btnConfirm"
+		btn.innerText = "Slutför köp"
 		confirm.appendChild(btn);
+		btn.appendChild(iconBtn);
 		//skapar en onclick för knappen
 		btn.addEventListener("click", function()  {
 			if(activeUser !== null){

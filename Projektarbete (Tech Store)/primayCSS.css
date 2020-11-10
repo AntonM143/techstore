@@ -140,6 +140,11 @@ main {
     /* Knappen måste ges mer utrymme, padding/margin så att inte icon och knapp ligger klossan */
 
 }
+.fa-check {
+    padding: 0.5em;
+    font-size: 20px;
+
+}
 .fa-cart-arrow-down{
     text-align: start;
     flex: 1 0 0;
