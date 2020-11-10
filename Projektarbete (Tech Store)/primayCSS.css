@@ -83,8 +83,7 @@ main {
 }
 
 /* Vårt innehåll i produktkorten, skapat i Javascript stylas här */
-.productCard
- {
+.productCard {
  background-color: #FFFFFF;
  display: flex;
  flex-direction: column;
@@ -94,10 +93,8 @@ main {
  font-weight: bold; 
 }
  
-.productCard:nth-child(even) 
- {
+.productCard:nth-child(even) {
  background-color: #F5F5F5;
- 
 }
 
 .productCard:last-child {
@@ -159,7 +156,6 @@ a:visited {
     color: white
 }
 
-
 /* Cart styling */
 
 #cartProducts {
@@ -169,7 +165,6 @@ a:visited {
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
-
 }
 
 .cartProdCard {
@@ -181,34 +176,10 @@ a:visited {
     background-color: #F5F5F5;
     margin-bottom: 30px;
 }
-=======
-@media only screen and (max-width: 600px) {
-	.navLeft {
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		width: 200px;		
-	}
-	
-	.hLogo, .productButton {
-		font-size: 25px;
-    }
-    #loginLogoutBtn, .productDescr {
-        font-size: 18px;
-    }
-    .productTitle{
-        font-size: 50px;
-    }
-    
-
 
 .cartImg {
     height: 20vh;
 }
-
-
-
-
 
 /* hover and active functions */
 
@@ -283,7 +254,6 @@ a:visited {
 }
 .logoKundvagn > i{
     margin-right: 0.5em;
-    
 }
 
 .totalSum{
@@ -293,31 +263,6 @@ a:visited {
     font-size: 2em;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-@media only screen and (max-width: 600px) {
-	.navLeft{
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		width: 200px;		
-	}
-	
-	.hLogo {
-		font-size: 25px;
-	}
-
-
-=======
 .myPageBtn{
     position: absolute;
     display: flex;
@@ -325,6 +270,24 @@ a:visited {
     margin-right: 100px;
     width: 100vw;
     z-index: 0;
-    
+}
 
+/* MEDIAQUERY-DELEN */
+@media only screen and (max-width: 600px) {
+	.navLeft {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		width: 200px;		
+	}
+	
+	.hLogo, .productButton {
+		font-size: 25px;
+    }
+    #loginLogoutBtn, .productDescr {
+        font-size: 18px;
+    }
+    .productTitle{
+        font-size: 50px;
+    }
 }
