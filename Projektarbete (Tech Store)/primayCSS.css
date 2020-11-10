@@ -58,7 +58,8 @@ header {
 	background-color: #212121;
 	color: white;
 	padding-left: 20px;
-	position: fixed;
+    position: fixed;
+    z-index: 1;
 }
 
 main {
@@ -257,3 +258,12 @@ a:visited {
     font-size: 2em;
 }
 
+.myPageBtn{
+    position: absolute;
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 100px;
+    width: 100vw;
+    z-index: 0;
+    
+}
