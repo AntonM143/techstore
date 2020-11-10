@@ -3,6 +3,7 @@ let body = document.getElementById("cartBody")
 window.addEventListener("load", initSite)
 let userList = localStorage.getItem("users")
 let activeUser = sessionStorage.getItem("customer")
+let noUserCart = localStorage.getItem("noUserCart")
 
 
 function initSite() {
@@ -13,13 +14,15 @@ function initSite() {
 		cartCounter()
 		allPrices()
 		confirmbtn()
+		printCart()
+
 
 	}
 }
 //Att göra: skapa en funktion som skapar en ta bort produkt knapp
-//Printa ut kundvagn på sidan, importera funktioner från main som skapar element och ändra parametern(produkt) till rätt local key
 function printCart() {
 	userList = JSON.parse(userList)
+	noUserCart = JSON.parse(noUserCart)
 	let cartDiv = document.getElementById("cartProducts")
 	
 	if(userList !== null){
@@ -39,10 +42,16 @@ function printCart() {
 					}
 			}
 		}	
-	}//Skapa else för noUserCart och se till att alla if/else funkar utan buggar
-
+	}
+	if(activeUser == null && noUserCart){
+		for (let i = 0; i < noUserCart.length; i++){
+			let productCard = createProductCard("cartProdCard", cartDiv)
+			productCard.appendChild(getImgElement(noUserCart[i], "cartImg"))
+			productCard.appendChild(getTitleElement(noUserCart[i]))
+			productCard.appendChild(getPriceElement(noUserCart[i]))
+		}
+	}
 }
-printCart()
 
 
 function allPrices() {
