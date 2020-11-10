@@ -25,41 +25,41 @@ function initSite() {
 	}
 }
 //Create Title Element and get content
-function getTitleElement(product) {
+export function getTitleElement(product, myClass) {
 	let productTitle = document.createElement('h2');
-	productTitle.className = 'productTitle';
+	productTitle.className = myClass;
 	productTitle.innerText = product.title;
 	return productTitle;
 }
 //Create Price element and get content
-function getPriceElement(product) {
+export function getPriceElement(product, myClass) {
 	let productPrice = document.createElement('p');
-	productPrice.className = 'productPrice';
+	productPrice.className = myClass;
 	productPrice.innerText = product.price + ':-';
 	return productPrice;
 }
 //Create Description element and get content
-function getDescriptionElement(product) {
+export function getDescriptionElement(product, myClass) {
 	let productDescr = document.createElement('div');
-	productDescr.className = 'productDescr';
+	productDescr.className = myClass;
 	productDescr.innerText = product.description;
 	return productDescr;
 }
 // Create IMG element append to parent container div and get source
-function getImgElement(product) {
+export function getImgElement(product, myClass) {
 	let productImgContainer = document.createElement('div');
 	productImgContainer.className = 'productImgContainer';
 	let productImg = document.createElement('img');
-	productImg.className = 'productImg';
+	productImg.className = myClass;
 	productImg.src = product.image;
 	productImgContainer.appendChild(productImg);
 	return productImgContainer;
 }
 //Create productCard and append it to productContainer
-function createProductCard() {
+export function createProductCard(myClass, appendTo) {
 	let productCard = document.createElement('div');
-	productCard.className = 'productCard';
-	productContainer.appendChild(productCard);
+	productCard.className = myClass;
+	appendTo.appendChild(productCard);
 	return productCard;
 }
 // Create a button
@@ -152,13 +152,13 @@ function addProductToCart(product) {
 /** Uses the loaded products data to create a visible product list on the website */
 function addProductsToWebpage() {
 	for (let i = 0; i < listOfProducts.length; i++) {
-		let productCard = createProductCard(listOfProducts[i]);
+		let productCard = createProductCard("productCard", productContainer);
 		let productButton = cartButton(listOfProducts[i]);
 
-		productCard.appendChild(getTitleElement(listOfProducts[i]));
-		productCard.appendChild(getDescriptionElement(listOfProducts[i]));
-		productCard.appendChild(getImgElement(listOfProducts[i]));
-		productCard.appendChild(getPriceElement(listOfProducts[i]));
+		productCard.appendChild(getTitleElement(listOfProducts[i], "productTitle"));
+		productCard.appendChild(getDescriptionElement(listOfProducts[i], "productDescr"));
+		productCard.appendChild(getImgElement(listOfProducts[i], "productImg"));
+		productCard.appendChild(getPriceElement(listOfProducts[i], "productPrice"));
 		productCard.appendChild(productButton);
 		
 	}

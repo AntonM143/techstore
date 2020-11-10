@@ -120,6 +120,7 @@ main {
     object-fit: contain;
     padding: 1em;
 }
+
 .productTitle {
     font-size: 4em;
     margin-bottom: 5px;
@@ -138,6 +139,10 @@ main {
     outline: none;     
     margin-bottom: 30px;             /* Vi har många knappar med samma styling, kan vara en ide att göra en klass som vi kan återanvända */
 }
+.btnConfirm {
+    /* Knappen måste ges mer utrymme, padding/margin så att inte icon och knapp ligger klossan */
+
+}
 .fa-cart-arrow-down{
     text-align: start;
     flex: 1 0 0;
@@ -154,6 +159,29 @@ a:visited {
     color: white
 }
 
+
+/* Cart styling */
+
+#cartProducts {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+
+}
+
+.cartProdCard {
+    min-width: 15vw;
+    padding: 10px;
+    margin-right: 50px;
+    border: 2px solid #5596F5;
+    border-radius: 15px;
+    background-color: #F5F5F5;
+    margin-bottom: 30px;
+}
+=======
 @media only screen and (max-width: 600px) {
 	.navLeft {
 		display: flex;
@@ -173,7 +201,14 @@ a:visited {
     }
     
 
+
+.cartImg {
+    height: 20vh;
 }
+
+
+
+
 
 /* hover and active functions */
 
@@ -258,6 +293,31 @@ a:visited {
     font-size: 2em;
 }
 
+
+
+
+
+
+
+
+
+
+
+
+@media only screen and (max-width: 600px) {
+	.navLeft{
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		width: 200px;		
+	}
+	
+	.hLogo {
+		font-size: 25px;
+	}
+
+
+=======
 .myPageBtn{
     position: absolute;
     display: flex;
@@ -266,4 +326,5 @@ a:visited {
     width: 100vw;
     z-index: 0;
     
+
 }

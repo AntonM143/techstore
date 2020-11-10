@@ -1,7 +1,10 @@
-
-import {loginLogoutButton, cartCounter} from "./main.js"
+import {loginLogoutButton, cartCounter, getTitleElement, getPriceElement, getDescriptionElement, getImgElement, createProductCard} from "./main.js"
 let body = document.getElementById("cartBody")
 window.addEventListener("load", initSite)
+let userList = localStorage.getItem("users")
+let activeUser = sessionStorage.getItem("customer")
+let noUserCart = localStorage.getItem("noUserCart")
+
 
 function initSite() {
 	if (body){
@@ -11,20 +14,44 @@ function initSite() {
 		cartCounter()
 		allPrices()
 		confirmbtn()
+		printCart()
+
 
 	}
 }
-
+//Att göra: skapa en funktion som skapar en ta bort produkt knapp
 function printCart() {
+	userList = JSON.parse(userList)
+	noUserCart = JSON.parse(noUserCart)
+	let cartDiv = document.getElementById("cartProducts")
+	
+	if(userList !== null){
+		for (let i = 0; i < userList.length; i++){
+			if(activeUser == userList[i].customer) {
+				console.log ("****match found**** ", userList[i].customer, activeUser)
+				let cart = userList[i].cart
+					if(cart !== null){
+						for(let i = 0; i < cart.length; i++){
+							console.log("loopar carten")
+							let productCard = createProductCard("cartProdCard", cartDiv)
 
-
-	if(cart.length > 0) {
-		for(let i = 0; i < cart.length; i++ ){
-
+							productCard.appendChild(getImgElement(cart[i], "cartImg"))
+							productCard.appendChild(getTitleElement(cart[i]))
+							productCard.appendChild(getPriceElement(cart[i]))
+						}
+					}
+			}
+		}	
+	}
+	if(activeUser == null && noUserCart){
+		for (let i = 0; i < noUserCart.length; i++){
+			let productCard = createProductCard("cartProdCard", cartDiv)
+			productCard.appendChild(getImgElement(noUserCart[i], "cartImg"))
+			productCard.appendChild(getTitleElement(noUserCart[i]))
+			productCard.appendChild(getPriceElement(noUserCart[i]))
 		}
-	}	
+	}
 }
-
 
 
 function allPrices() {
