@@ -154,17 +154,23 @@ a:visited {
 }
 
 @media only screen and (max-width: 600px) {
-	.navLeft{
+	.navLeft {
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
 		width: 200px;		
 	}
 	
-	.hLogo {
+	.hLogo, .productButton {
 		font-size: 25px;
-	}
-
+    }
+    #loginLogoutBtn, .productDescr {
+        font-size: 18px;
+    }
+    .productTitle{
+        font-size: 50px;
+    }
+    
 
 }
 

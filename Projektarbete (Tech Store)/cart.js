@@ -91,12 +91,12 @@ function confirmbtn (){
 		confirm.appendChild(btn);
 		//skapar en onclick för knappen
 		btn.addEventListener("click", function()  {
-			
 			if(activeUser !== null){
 				for(let i = 0; i < userList.length; i++){
 					if(userList[i].customer == activeUser){
 						let user = userList[i];
 						let userCart = user.cart;
+						saveOld()
 						userCart.splice(0, userCart.length)
 						let totalSumCon = document.getElementById("totPrice")
 						totalSumCon.innerText = ""
@@ -112,4 +112,12 @@ function confirmbtn (){
 			allPrices()
 		});
 	}
+}
+
+
+//Skapar en ny user som kopierar current user + cart och sparar i localstorage
+function saveOld(){
+	let userList = localStorage.getItem("users")
+	localStorage.setItem("oldOrders", userList)
+	localStorage.getItem("oldOrders")
 }
