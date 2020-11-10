@@ -58,7 +58,8 @@ header {
 	background-color: #212121;
 	color: white;
 	padding-left: 20px;
-	position: fixed;
+    position: fixed;
+    z-index: 1;
 }
 
 main {
@@ -158,6 +159,7 @@ a:visited {
     color: white
 }
 
+
 /* Cart styling */
 
 #cartProducts {
@@ -179,6 +181,26 @@ a:visited {
     background-color: #F5F5F5;
     margin-bottom: 30px;
 }
+=======
+@media only screen and (max-width: 600px) {
+	.navLeft {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		width: 200px;		
+	}
+	
+	.hLogo, .productButton {
+		font-size: 25px;
+    }
+    #loginLogoutBtn, .productDescr {
+        font-size: 18px;
+    }
+    .productTitle{
+        font-size: 50px;
+    }
+    
+
 
 .cartImg {
     height: 20vh;
@@ -281,6 +303,7 @@ a:visited {
 
 
 
+
 @media only screen and (max-width: 600px) {
 	.navLeft{
 		display: flex;
@@ -293,5 +316,15 @@ a:visited {
 		font-size: 25px;
 	}
 
+
+=======
+.myPageBtn{
+    position: absolute;
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 100px;
+    width: 100vw;
+    z-index: 0;
+    
 
 }
