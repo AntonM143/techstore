@@ -1,9 +1,9 @@
 import {loginLogoutButton, cartCounter, getTitleElement, getPriceElement, getDescriptionElement, getImgElement, createProductCard} from "./main.js"
 let body = document.getElementById("cartBody")
-window.addEventListener("load", initSite)
 let userList = localStorage.getItem("users")
 let activeUser = sessionStorage.getItem("customer")
 let noUserCart = localStorage.getItem("noUserCart")
+window.addEventListener("load", initSite)
 
 
 function initSite() {
@@ -15,11 +15,12 @@ function initSite() {
 		allPrices()
 		confirmbtn()
 		printCart()
-
+	
+		removeProduct()
 
 	}
 }
-//Att göra: skapa en funktion som skapar en ta bort produkt knapp
+//Funktion som skriver ut sparad kundvagn till kundvagns sidan
 function printCart() {
 	userList = JSON.parse(userList)
 	noUserCart = JSON.parse(noUserCart)
@@ -99,8 +100,7 @@ function allPrices() {
 			}
 		}
 	}
-		//Möjglitvis skapa en funktion som räknar priser på produkter som inte är sparade till användare
-	}
+}
  
  //funktion för knapp som bekräftar köp
 function confirmbtn (){
@@ -141,10 +141,51 @@ function confirmbtn (){
 	}
 }
 
-
 //Skapar en ny user som kopierar current user + cart och sparar i localstorage
 function saveOld(){
 	let userList = localStorage.getItem("users")
 	localStorage.setItem("oldOrders", userList)
 	localStorage.getItem("oldOrders")
+
 }
+
+/* function RemoveProdBtn(appendTo) {
+
+	let removeProdBtn = document.createElement("button")
+	removeProdBtn.className = "removeProdBtn"
+	removeProdBtn.innerText = "Remove product"
+
+	
+
+} */
+
+function removeProduct() {
+	
+	
+	let removedProduct = JSON.parse(localStorage.getItem("users")) //Varför funkar denna men inte "userList = JSON.parse(userList)" ??????
+
+
+
+	if(activeUser){
+		for (let i = 0; i < userList.length; i++){
+			
+			if(activeUser == userList[i].customer){
+				
+/* 				userList = JSON.parse(userList)
+ */
+				userList = userList[i].customer
+				let cart = userList.cart
+				
+/* 
+				userList.splice(i, 0)  */
+			
+			}	
+		}	
+	}
+
+
+	
+
+	//userList.splice(product, 1)
+}
+
