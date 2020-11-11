@@ -1,8 +1,6 @@
 import {loginLogoutButton, cartCounter, getTitleElement, getPriceElement, getDescriptionElement, getImgElement, createProductCard} from "./main.js"
 let body = document.getElementById("cartBody")
-let userList = localStorage.getItem("users")
 let activeUser = sessionStorage.getItem("customer")
-let noUserCart = localStorage.getItem("noUserCart")
 window.addEventListener("load", initSite)
 
 
@@ -16,29 +14,49 @@ function initSite() {
 		confirmbtn()
 		printCart()
 	
-		removeProduct()
 
 	}
 }
+	
+export function parseUserList() {
+	let userList = localStorage.getItem("users")
+	userList = JSON.parse(userList)	
+	return userList
+}
+export function myCart () {
+	let userList = parseUserList()
+	for (let i = 0; i < userList.length; i++){
+		if(activeUser == userList[i].customer) {
+			let cart = userList[i].cart
+			return cart
+		}
+	}
+}
+export function parseNoUserCart () {
+	let noUserCart = localStorage.getItem("noUserCart")
+	noUserCart = JSON.parse(noUserCart)
+	return noUserCart
+}
+
 //Funktion som skriver ut sparad kundvagn till kundvagns sidan
 function printCart() {
-	userList = JSON.parse(userList)
-	noUserCart = JSON.parse(noUserCart)
+	let userList = parseUserList()
+	let noUserCart = parseNoUserCart()
 	let cartDiv = document.getElementById("cartProducts")
 	
 	if(userList !== null){
 		for (let i = 0; i < userList.length; i++){
 			if(activeUser == userList[i].customer) {
-				console.log ("****match found**** ", userList[i].customer, activeUser)
-				let cart = userList[i].cart
+				let cart = myCart()
 					if(cart !== null){
 						for(let i = 0; i < cart.length; i++){
-							console.log("loopar carten")
 							let productCard = createProductCard("cartProdCard", cartDiv)
 
 							productCard.appendChild(getImgElement(cart[i], "cartImg"))
 							productCard.appendChild(getTitleElement(cart[i]))
 							productCard.appendChild(getPriceElement(cart[i]))
+							RemoveProdBtn(cart[i], productCard)
+							
 						}
 					}
 			}
@@ -56,19 +74,15 @@ function printCart() {
 
 
 function allPrices() {
-	let userList = localStorage.getItem("users")
+	let userList = parseUserList()
 	let activeUser = sessionStorage.getItem("customer")
-	let noUserCart = localStorage.getItem("noUserCart")
+	let noUserCart = parseNoUserCart()
 	let totalt = 0
- 	userList = JSON.parse(userList)
- 	noUserCart = JSON.parse(noUserCart)
+ 	
 	
 	if(activeUser !== null){
-		console.log("active user exist, and therefor userlist exists")
 		for(let i = 0; i < userList.length; i++){	
-			console.log("user list looping")
 			if(userList[i].customer == activeUser){
-				console.log("user match", "local = ", userList[i].customer, "session = ", activeUser)
 				let cart = userList[i].cart
 				for(i = 0; i < cart.length; i++){
 					let loginPrice = cart[i].price
@@ -85,7 +99,6 @@ function allPrices() {
 		}	
 	}
 	else{
-		console.log("no user ")
 		if(noUserCart !== null){
 			for (let i = 0; i < noUserCart.length; i++){
 				let noUserPrice = noUserCart[i].price
@@ -96,7 +109,6 @@ function allPrices() {
 				totalSum.className = "totalSum";
 				totalSum.innerText += "Totalt pris: " + totalt +" kr"
 				totalSumCon.appendChild(totalSum)
-				console.log(noUserPrice)
 			}
 		}
 	}
@@ -105,12 +117,10 @@ function allPrices() {
  //funktion för knapp som bekräftar köp
 function confirmbtn (){
 	//skapar knapp samt skriver text i den
-	let userList = localStorage.getItem("users")
+	let userList = parseUserList()
 	let activeUser = sessionStorage.getItem("customer")
-	let noUserList = localStorage.getItem("noUserCart")
-	userList = JSON.parse(userList)
-	noUserList = JSON.parse(noUserList)
-	if(noUserList || userList) {
+	let noUserCart = parseNoUserCart()
+	if(noUserCart || userList) {
 		let confirm = document.getElementById("confirmBtn");
 		let btn = document.createElement("button");
 		btn.className = "btnConfirm fas fa-check"
@@ -133,7 +143,7 @@ function confirmbtn (){
 					}
 				}		
 			}
-			else if (noUserList !== null) {
+			else if (noUserCart !== null) {
 				alert("Logga in för att slutföra ditt köp")		
 			}
 			allPrices()
@@ -143,49 +153,73 @@ function confirmbtn (){
 
 //Skapar en ny user som kopierar current user + cart och sparar i localstorage
 function saveOld(){
-	let userList = localStorage.getItem("users")
+	let userList = parseUserList()
 	localStorage.setItem("oldOrders", userList)
 	localStorage.getItem("oldOrders")
 
 }
 
-/* function RemoveProdBtn(appendTo) {
+function RemoveProdBtn(product, appendTo) {
 
 	let removeProdBtn = document.createElement("button")
 	removeProdBtn.className = "removeProdBtn"
 	removeProdBtn.innerText = "Remove product"
+	appendTo.appendChild(removeProdBtn)
 
+	removeProdBtn.addEventListener("click", () => {
+		removeProduct(product)
+	})
 	
 
-} */
-
-function removeProduct() {
+} 
+/* 
+function removeProduct(product) {
 	
 	
-	let removedProduct = JSON.parse(localStorage.getItem("users")) //Varför funkar denna men inte "userList = JSON.parse(userList)" ??????
-
+	let userList = parseUserList()
+	let cart = myCart()
 
 
 	if(activeUser){
 		for (let i = 0; i < userList.length; i++){
-			
-			if(activeUser == userList[i].customer){
+			if(activeUser == userList[i].customer && cart.length){
+				for(let i = 0; i < cart.length; i++) {
+					if(cart[i].title === product.title) {
+						
+						
+						console.log(cart)
+						cart.splice(product, 1) 
+						console.log(cart)
+
+						localStorage.setItem("users", JSON.stringify(userList))
+
+						return
+					}
+				}
 				
-/* 				userList = JSON.parse(userList)
- */
-				userList = userList[i].customer
-				let cart = userList.cart
-				
-/* 
-				userList.splice(i, 0)  */
 			
-			}	
+
+				if(cart.length) {
+					for(let i = 0; i < cart.length; i++){
+
+						if(cart[i].title === product.title) {
+							console.log(cart)
+							cart.splice(i, 1)
+							console.log(cart)
+							localStorage.setItem("users", JSON.stringify(userList))
+							
+							printCart()
+							return
+
+						}
+					}
+				}
+			}
 		}	
 	}
+} */
+
+//Misstänker att det bråkar då jag deklarerar userList = JSON.parse(userList) i flera funktioner även om det för mig logiskt inte borde..
 
 
-	
-
-	//userList.splice(product, 1)
-}
-
+//Global variable synkar inte hämtars bara en gång
