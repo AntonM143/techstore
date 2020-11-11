@@ -1,3 +1,4 @@
+import {parseUserList, parseNoUserCart, myCart} from "./cart.js"
 window.addEventListener("load", initSite)
 var listOfProducts;
 let body = document.getElementById("indexBody")
@@ -190,8 +191,7 @@ export function cartCounter(){
 			}
 
 		}else {
-			let noUserCart = localStorage.getItem("noUserCart")
-			noUserCart = JSON.parse(noUserCart)
+			let noUserCart = parseNoUserCart()
 				if(noUserCart !== null){	
 					for(let i = 0; i < noUserCart.length; i++){
 						let counter = document.getElementById("counterCart")
