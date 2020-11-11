@@ -1,4 +1,4 @@
-import {parseUserList, parseNoUserCart, myCart} from "./cart.js"
+import {parseUserList, parseNoUserCart} from "./cart.js"
 window.addEventListener("load", initSite)
 var listOfProducts;
 let body = document.getElementById("indexBody")

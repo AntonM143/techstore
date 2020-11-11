@@ -7,7 +7,6 @@ window.addEventListener("load", initSite)
 function initSite() {
 	if (body){
 		console.log("cartBody detected")
-		allPrices()
 		loginLogoutButton()
 		cartCounter()
 		allPrices()
@@ -22,15 +21,6 @@ export function parseUserList() {
 	let userList = localStorage.getItem("users")
 	userList = JSON.parse(userList)	
 	return userList
-}
-export function myCart () {
-	let userList = parseUserList()
-	for (let i = 0; i < userList.length; i++){
-		if(activeUser == userList[i].customer) {
-			let cart = userList[i].cart
-			return cart
-		}
-	}
 }
 export function parseNoUserCart () {
 	let noUserCart = localStorage.getItem("noUserCart")
@@ -47,16 +37,16 @@ function printCart() {
 	if(userList !== null){
 		for (let i = 0; i < userList.length; i++){
 			if(activeUser == userList[i].customer) {
-				let cart = myCart()
+				let cart = userList[i].cart
 					if(cart !== null){
+						cartDiv.innerHTML = ""
 						for(let i = 0; i < cart.length; i++){
 							let productCard = createProductCard("cartProdCard", cartDiv)
 
 							productCard.appendChild(getImgElement(cart[i], "cartImg"))
 							productCard.appendChild(getTitleElement(cart[i]))
 							productCard.appendChild(getPriceElement(cart[i]))
-							RemoveProdBtn(cart[i], productCard)
-							
+							RemoveProdBtn(cart[i], productCard)							
 						}
 					}
 			}
@@ -171,56 +161,41 @@ function RemoveProdBtn(product, appendTo) {
 
 	removeProdBtn.addEventListener("click", () => {
 		removeProduct(product)
+		printCart()
+		allPrices()
+		cartCounter()
 	})
 	
 
 } 
-/* 
+ 
 function removeProduct(product) {
 	
 	
 	let userList = parseUserList()
-	let cart = myCart()
-
-
+	
 	if(activeUser){
 		for (let i = 0; i < userList.length; i++){
+			let cart = userList[i].cart
 			if(activeUser == userList[i].customer && cart.length){
 				for(let i = 0; i < cart.length; i++) {
 					if(cart[i].title === product.title) {
 						
 						
 						console.log(cart)
-						cart.splice(product, 1) 
+						cart.splice(i, 1) 
 						console.log(cart)
 
-						localStorage.setItem("users", JSON.stringify(userList))
+						let newUserList = userList
+						localStorage.setItem("users", JSON.stringify(newUserList))
 
 						return
-					}
-				}
-				
-			
-
-				if(cart.length) {
-					for(let i = 0; i < cart.length; i++){
-
-						if(cart[i].title === product.title) {
-							console.log(cart)
-							cart.splice(i, 1)
-							console.log(cart)
-							localStorage.setItem("users", JSON.stringify(userList))
-							
-							printCart()
-							return
-
-						}
 					}
 				}
 			}
 		}	
 	}
-} */
+} 
 
 //Misstänker att det bråkar då jag deklarerar userList = JSON.parse(userList) i flera funktioner även om det för mig logiskt inte borde..
 
