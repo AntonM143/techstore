@@ -193,10 +193,6 @@ function removeProduct(product) {
 	}
 } 
 
-//Misstänker att det bråkar då jag deklarerar userList = JSON.parse(userList) i flera funktioner även om det för mig logiskt inte borde..
-
-
-//Global variable synkar inte hämtars bara en gång
 
 
 function getUser() {
@@ -205,17 +201,6 @@ function getUser() {
 		for (let i = 0; i < userList.length; i++) {
 			if(userList[i].customer == activeUser){
 				return userList[i]
-			}
-
-		}
-	}
-}
-function checkUser() {
-	let userList = parseUserList()
-	if(activeUser) {
-		for (let i = 0; i < userList.length; i++) {
-			if(userList[i].customer == activeUser){
-				return true && userList[i]
 			}
 
 		}
