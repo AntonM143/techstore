@@ -1,4 +1,3 @@
-import {parseUserList, parseNoUserCart} from "./cart.js"
 window.addEventListener("load", initSite)
 var listOfProducts;
 let body = document.getElementById("indexBody")
@@ -178,20 +177,27 @@ export function cartCounter(){
 
 				if(activeUser == localArray[i].customer){ //Letar efter en match mellan inloggad kund och sparad kund
 					
-
+					let counter = document.getElementById("counterCart")
 					let currentCounter = localArray[i].cart
-			
-					for ( let i = 0; i < currentCounter.length ; i ++){
+					if(currentCounter.length){
+						for ( let i = 0; i < currentCounter.length ; i ++){
 
-						let counter = document.getElementById("counterCart")
-						counter.innerText = currentCounter.length 
-						console.log(currentCounter.length)
+							
+							counter.innerText = currentCounter.length 
+							console.log(currentCounter.length)
+							
+
+						}
+					}else{
+						
+						counter.innerText = ""
 					}
 				}	
 			}
 
 		}else {
-			let noUserCart = parseNoUserCart()
+			let noUserCart = localStorage.getItem("noUserCart")
+			noUserCart = JSON.parse(noUserCart)
 				if(noUserCart !== null){	
 					for(let i = 0; i < noUserCart.length; i++){
 						let counter = document.getElementById("counterCart")
