@@ -129,7 +129,9 @@ function confirmbtn (){
 						let totalSumCon = document.getElementById("totPrice")
 						totalSumCon.innerText = ""
 						alert("Köp bekräftat")
-						/* location.href = "index.html" */
+		
+
+						location.href = "index.html" 
 						return
 					}
 				}
