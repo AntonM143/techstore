@@ -1,4 +1,5 @@
-import {loginLogoutButton, cartCounter, getTitleElement, getPriceElement, getDescriptionElement, getImgElement, createProductCard} from "./main.js"
+import {loginLogoutButton, cartCounter, getTitleElement, getPriceElement, getDescriptionElement, getImgElement, createProductCard,} from "./main.js"
+import {  addToArray, saveArrayToLocal } from "./login.js"
 let body = document.getElementById("cartBody")
 let activeUser = sessionStorage.getItem("customer")
 window.addEventListener("load", initSite)
@@ -7,7 +8,6 @@ window.addEventListener("load", initSite)
 function initSite() {
 	if (body){
 		console.log("cartBody detected")
-		allPrices()
 		loginLogoutButton()
 		cartCounter()
 		allPrices()
@@ -22,15 +22,6 @@ export function parseUserList() {
 	let userList = localStorage.getItem("users")
 	userList = JSON.parse(userList)	
 	return userList
-}
-export function myCart () {
-	let userList = parseUserList()
-	for (let i = 0; i < userList.length; i++){
-		if(activeUser == userList[i].customer) {
-			let cart = userList[i].cart
-			return cart
-		}
-	}
 }
 export function parseNoUserCart () {
 	let noUserCart = localStorage.getItem("noUserCart")
@@ -47,16 +38,16 @@ function printCart() {
 	if(userList !== null){
 		for (let i = 0; i < userList.length; i++){
 			if(activeUser == userList[i].customer) {
-				let cart = myCart()
+				let cart = userList[i].cart
 					if(cart !== null){
+						cartDiv.innerHTML = ""
 						for(let i = 0; i < cart.length; i++){
 							let productCard = createProductCard("cartProdCard", cartDiv)
 
 							productCard.appendChild(getImgElement(cart[i], "cartImg"))
 							productCard.appendChild(getTitleElement(cart[i]))
 							productCard.appendChild(getPriceElement(cart[i]))
-							RemoveProdBtn(cart[i], productCard)
-							
+							RemoveProdBtn(cart[i], productCard)							
 						}
 					}
 			}
@@ -117,10 +108,7 @@ function allPrices() {
  //funktion för knapp som bekräftar köp
 function confirmbtn (){
 	//skapar knapp samt skriver text i den
-	let userList = parseUserList()
-	let activeUser = sessionStorage.getItem("customer")
-	let noUserCart = parseNoUserCart()
-	if(noUserCart || userList) {
+	if(parseNoUserCart() || parseUserList()) {
 		let confirm = document.getElementById("confirmBtn");
 		let btn = document.createElement("button");
 		let iconBtn = document.createElement("div")
@@ -131,21 +119,24 @@ function confirmbtn (){
 		btn.appendChild(iconBtn);
 		//skapar en onclick för knappen
 		btn.addEventListener("click", function()  {
-			if(activeUser !== null){
-				for(let i = 0; i < userList.length; i++){
-					if(userList[i].customer == activeUser){
-						let user = userList[i];
-						let userCart = user.cart;
-						saveOld()
-						userCart.splice(0, userCart.length)
+			if(activeUser){
+				let userList = parseUserList()
+				for (let i = 0; i < userList.length; i++){
+					if(activeUser == userList[i].customer){
+						
+						userList[i] = emptyCart() 
+						localStorage.setItem("users", JSON.stringify(userList))
 						let totalSumCon = document.getElementById("totPrice")
 						totalSumCon.innerText = ""
 						alert("Köp bekräftat")
-						location.href = "index.html"
-						localStorage.setItem("users", JSON.stringify(userList))
+		
+
+						location.href = "index.html" 
+						return
 					}
-				}		
-			}
+				}
+			}		
+			
 			else if (noUserCart !== null) {
 				alert("Logga in för att slutföra ditt köp")		
 			}
@@ -155,12 +146,7 @@ function confirmbtn (){
 }
 
 //Skapar en ny user som kopierar current user + cart och sparar i localstorage
-function saveOld(){
-	let userList = parseUserList()
-	localStorage.setItem("oldOrders", userList)
-	localStorage.getItem("oldOrders")
 
-}
 
 function RemoveProdBtn(product, appendTo) {
 
@@ -171,58 +157,105 @@ function RemoveProdBtn(product, appendTo) {
 
 	removeProdBtn.addEventListener("click", () => {
 		removeProduct(product)
+		printCart()
+		allPrices()
+		cartCounter()
 	})
 	
 
 } 
-/* 
+ 
 function removeProduct(product) {
 	
 	
 	let userList = parseUserList()
-	let cart = myCart()
-
-
+	
 	if(activeUser){
 		for (let i = 0; i < userList.length; i++){
+			let cart = userList[i].cart
 			if(activeUser == userList[i].customer && cart.length){
 				for(let i = 0; i < cart.length; i++) {
 					if(cart[i].title === product.title) {
 						
 						
 						console.log(cart)
-						cart.splice(product, 1) 
+						cart.splice(i, 1) 
 						console.log(cart)
 
-						localStorage.setItem("users", JSON.stringify(userList))
+						let newUserList = userList
+						localStorage.setItem("users", JSON.stringify(newUserList))
 
 						return
-					}
-				}
-				
-			
-
-				if(cart.length) {
-					for(let i = 0; i < cart.length; i++){
-
-						if(cart[i].title === product.title) {
-							console.log(cart)
-							cart.splice(i, 1)
-							console.log(cart)
-							localStorage.setItem("users", JSON.stringify(userList))
-							
-							printCart()
-							return
-
-						}
 					}
 				}
 			}
 		}	
 	}
-} */
+} 
 
 //Misstänker att det bråkar då jag deklarerar userList = JSON.parse(userList) i flera funktioner även om det för mig logiskt inte borde..
 
 
 //Global variable synkar inte hämtars bara en gång
+
+
+function getUser() {
+	let userList = parseUserList()
+	if(activeUser) {
+		for (let i = 0; i < userList.length; i++) {
+			if(userList[i].customer == activeUser){
+				return userList[i]
+			}
+
+		}
+	}
+}
+function checkUser() {
+	let userList = parseUserList()
+	if(activeUser) {
+		for (let i = 0; i < userList.length; i++) {
+			if(userList[i].customer == activeUser){
+				return true && userList[i]
+			}
+
+		}
+	}
+}
+
+
+function getCart() {
+	if(activeUser){
+		getUser()
+		return getUser().cart
+		
+	}
+}
+
+
+
+function saveOldOrders(order) {
+    if(activeUser){
+	let user = getUser()
+	console.log("cart: ", order.cart)
+	console.log("oldOlders: ", user.oldOrders)
+	order.oldOrders.push(order.cart)
+	console.log("cart after push", order.cart) 
+	console.log("end of PTOO ", order)
+	}
+}
+
+function emptyCart() {
+	if(activeUser){
+		let user = getUser()
+		let cart = getCart()
+		saveOldOrders(user)
+		console.log("E.C = ", user.cart)
+		cart.splice(cart)
+		user.cart = cart
+		console.log("E.C = ", cart)
+		console.log("finalLogg = ", user)
+		return user
+	}
+
+}
+
