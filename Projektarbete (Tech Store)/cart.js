@@ -218,29 +218,42 @@ function getCart() {
 
 
 
-function saveOldOrders(order) {
+function saveOldOrders(order) {//Kanske kan få fler användnigs områden om jag gör en if(cart) / else
     if(activeUser){
 	let user = getUser()
+	
 	console.log("cart: ", order.cart)
 	console.log("oldOlders: ", user.oldOrders)
+	
+	order.cart.splice(0, 0, dateToDay())
 	order.oldOrders.push(order.cart)
+	
 	console.log("cart after push", order.cart) 
 	console.log("end of PTOO ", order)
 	}
 }
 
-function emptyCart() {
+function emptyCart() {//samma som ovan. möjligtvis en if(cart) return userCart else något annat
 	if(activeUser){
 		let user = getUser()
 		let cart = getCart()
 		saveOldOrders(user)
+		
 		console.log("E.C = ", user.cart)
+		
 		cart.splice(cart)
 		user.cart = cart
+		
 		console.log("E.C = ", cart)
 		console.log("finalLogg = ", user)
+		
 		return user
 	}
 
 }
 
+function dateToDay() {
+	let today = new Date().toISOString().slice(0, 10)
+
+	return today
+}
