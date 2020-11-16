@@ -188,14 +188,40 @@ a:visited {
 
 
 /* myPage styling */
-#myTable{
+
+.hisProdCard{
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: space-around;
+    align-items: center;
+  
+    
+}
+
+.logoMyPage {
+  font-size: 2em;
+ 
+ height: 20px;
+    font-family: usual, sans-serif;
+	font-style: bold;
+	
+}
+
+Table{
+    
     width: 40vw;
+    margin-bottom:50px;
+  
+}
+
+h4{
+    margin: 15px;
 }
 
 #orderHistory{
     display: flex;
-    flex-direction: column;
-    width: 100%;
+    width: 40vw;
     align-items: center;
     justify-content: center;
     flex-wrap: wrap; 
@@ -203,11 +229,12 @@ a:visited {
 
 .titleText{
     font-size: 15px;
+   
 }
 
-.priceText{
-    font-size: 15px;
-}
+    .priceText{
+        font-size: 15px;
+    }
 
    .historyImg {
     height: 5vh;
@@ -228,10 +255,10 @@ table {
   tr:nth-child(odd) {
     background-color: #F5F5F5;;
   }
-  td:nth-child(2) {
+  td:nth-child(1) {
     width: 1vw;
   }
-  td:nth-child(4) {
+  td:nth-child(3) {
     width: 1vw;
   }
 
@@ -302,7 +329,6 @@ table {
     font-size: 2em;
     margin-top: 2em;
     margin-bottom: 2em;
-    margin-right: 2em;
     font-family: usual, sans-serif;
 	font-style: normal;
 	font-weight: 600;

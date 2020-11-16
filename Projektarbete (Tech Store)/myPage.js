@@ -1,5 +1,5 @@
 import {loginLogoutButton, cartCounter,createProductCard,getImgElement,getTitleElement,getPriceElement} from "./main.js"
-import {parseUserList} from "./cart.js"
+import {parseUserList, allPrices} from "./cart.js"
 let body = document.getElementById("myPageBody")
 let activeUser = sessionStorage.getItem("customer")
 window.addEventListener("load", initSite)
@@ -19,7 +19,9 @@ function orderHistory(){
 	
 	
 	let userList = parseUserList()
-	let cartDiv = document.getElementById("cartProducts")
+	let historyDiv = document.getElementById("orderHistory")
+
+	
 	
 		for (let i = 0; i < userList.length; i++){
 
@@ -29,21 +31,42 @@ function orderHistory(){
 			let pastOrders = currentUser.oldOrders
 				
 				for(let i = 0; i < pastOrders.length; i++){
-					
-					let productCard = createProductCard("cartProdCard", cartDiv)
-					var table = document.getElementById("myTable");
 					let inOrders = pastOrders[i]
+					
+					
+					let productCard = createProductCard("hisProdCard", historyDiv)
+					let newTable = document.createElement("table")	
+			
+					
+					let headLine = document.createElement("h4")
+				
+					headLine.innerText = 'OrderNr: ' + (i + 1) 
+
+					productCard.appendChild(headLine)
+					productCard.appendChild(newTable)
+					
 
 					for (let i = 0; i < inOrders.length; i++ ){
-						var row = table.insertRow(0);
-						var cell1 = row.insertCell(0);
-						var cell2 = row.insertCell(1);
-						var cell3 = row.insertCell(2);
-						var cell4 = row.insertCell(3);
 
-						cell1.appendChild(getImgElement(inOrders[i], "cartImg"))
-						cell2.appendChild(getTitleElement(inOrders[i]))
-						cell3.appendChild(getPriceElement(inOrders[i]))
+					
+						let row = newTable.insertRow(0);
+						
+				
+				
+						
+						let cell1 = row.insertCell(0);
+						let cell2 = row.insertCell(1);
+						let cell3 = row.insertCell(2);
+						
+						
+					
+						cell1.appendChild(getImgElement(inOrders[i], "historyImg"))
+						cell2.appendChild(getTitleElement(inOrders[i], "titleText"))
+						cell3.appendChild(getPriceElement(inOrders[i], "priceText"))
+						
+						
+						
+						
 						
 
 					}
@@ -55,11 +78,3 @@ function orderHistory(){
 
 
 
-/* var table = document.getElementById("myTable");
-var row = table.insertRow(0);
-var cell1 = row.insertCell(0);
-var cell2 = row.insertCell(1);
-var cell3 = row.insertCell(2);
-var cell4 = row.insertCell(3);
-
- */
