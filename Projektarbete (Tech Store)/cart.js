@@ -54,11 +54,15 @@ function printCart() {
 		}	
 	}
 	if(activeUser == null && noUserCart){
+		cartDiv.innerHTML = ""
 		for (let i = 0; i < noUserCart.length; i++){
 			let productCard = createProductCard("cartProdCard", cartDiv)
+
 			productCard.appendChild(getImgElement(noUserCart[i], "cartImg"))
 			productCard.appendChild(getTitleElement(noUserCart[i]))
 			productCard.appendChild(getPriceElement(noUserCart[i]))
+			RemoveProdBtn(noUserCart[i], productCard)							
+
 		}
 	}
 }
@@ -137,7 +141,7 @@ function confirmbtn (){
 				}
 			}		
 			
-			else if (noUserCart !== null) {
+			else if (activeUser == null) {
 				alert("Logga in för att slutföra ditt köp")		
 			}
 			allPrices()
@@ -167,8 +171,8 @@ function RemoveProdBtn(product, appendTo) {
  
 function removeProduct(product) {
 	
-	
 	let userList = parseUserList()
+	let noUserCart = parseNoUserCart()
 	
 	if(activeUser){
 		for (let i = 0; i < userList.length; i++){
@@ -176,20 +180,23 @@ function removeProduct(product) {
 			if(activeUser == userList[i].customer && cart.length){
 				for(let i = 0; i < cart.length; i++) {
 					if(cart[i].title === product.title) {
-						
-						
-						console.log(cart)
 						cart.splice(i, 1) 
-						console.log(cart)
-
 						let newUserList = userList
 						localStorage.setItem("users", JSON.stringify(newUserList))
-
 						return
 					}
 				}
 			}
 		}	
+	}
+	if(!activeUser && noUserCart){
+		for(let i = 0; i < noUserCart.length; i++){
+			if(noUserCart[i].title === product.title){
+				noUserCart.splice(i, 1)	
+				localStorage.setItem("noUserCart", JSON.stringify(noUserCart))
+				return
+			}
+		}
 	}
 } 
 
@@ -257,3 +264,4 @@ function dateToDay() {
 
 	return today
 }
+
