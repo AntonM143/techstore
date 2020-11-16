@@ -1,4 +1,4 @@
-import {loginLogoutButton, cartCounter, getTitleElement, getPriceElement, getDescriptionElement, getImgElement, createProductCard,} from "./main.js"
+import {loginLogoutButton, cartCounter, getTitleElement, getPriceElement, getDescriptionElement, getImgElement, createProductCard, myPageBtn, removeElementById} from "./main.js"
 import {  addToArray, saveArrayToLocal } from "./login.js"
 let body = document.getElementById("cartBody")
 let activeUser = sessionStorage.getItem("customer")
@@ -13,8 +13,7 @@ function initSite() {
 		allPrices()
 		confirmbtn()
 		printCart()
-	
-
+		myPageBtn()
 	}
 }
 	
@@ -101,62 +100,79 @@ export function allPrices() {
 	}
 	else{
 		if(noUserCart !== null){
-			for (let i = 0; i < noUserCart.length; i++){
-				let noUserPrice = noUserCart[i].price
+			if( noUserCart.length > 0){
+				for (let i = 0; i < noUserCart.length; i++){
+					let noUserPrice = noUserCart[i].price
+					let totalSumCon = document.getElementById("totPrice")
+					let totalSum = document.createElement("p")
+					totalSumCon.innerHTML = ""
+					totalt += noUserPrice
+					totalSum.className = "totalSum";
+					totalSum.innerText += "Totalt pris: " + totalt +" kr"
+					totalSumCon.appendChild(totalSum)
+				}
+			}
+			else {
 				let totalSumCon = document.getElementById("totPrice")
-				let totalSum = document.createElement("p")
 				totalSumCon.innerHTML = ""
-				totalt += noUserPrice
-				totalSum.className = "totalSum";
-				totalSum.innerText += "Totalt pris: " + totalt +" kr"
-				totalSumCon.appendChild(totalSum)
 			}
 		}
+
 	}
 }
- 
+
+function createConfirmBtn(){
+	let container = document.getElementById("productContainer");
+	let iconBtn = document.createElement("div")
+	let btn = document.createElement("button");
+	btn.className = "btnConfirm"
+	btn.innerText = "Slutför köp"
+	iconBtn.className = "fas fa-check"
+	btn.id="btnConfirm"
+	container.appendChild(btn);
+	btn.appendChild(iconBtn);
+	btn.addEventListener("click", () => {
+		confirmOrder()
+	})
+} 
+
  //funktion för knapp som bekräftar köp
 function confirmbtn (){
-	//skapar knapp samt skriver text i den
-	if(parseNoUserCart() || parseUserList()){
-		let confirm = document.getElementById("confirmBtn");
-		let btn = document.createElement("button");
-		let iconBtn = document.createElement("div")
-		iconBtn.className = "fas fa-check"
-		btn.className = "btnConfirm"
-		btn.innerText = "Slutför köp"
-		confirm.appendChild(btn);
-		btn.appendChild(iconBtn);
-		//skapar en onclick för knappen
-		btn.addEventListener("click", function()  {
-			if(activeUser){
-				let userList = parseUserList()
-				for (let i = 0; i < userList.length; i++){
-					if(activeUser == userList[i].customer){
-						userList[i] = emptyCart() 
-						localStorage.setItem("users", JSON.stringify(userList))
-						let totalSumCon = document.getElementById("totPrice")
-						totalSumCon.innerText = ""
-						alert("Köp bekräftat")
-						location.href = "index.html" 
-						return
-					}
-				}
-			}		
-			
-			else if (activeUser == null) {
-				alert("Logga in för att slutföra ditt köp")		
-			}
-			allPrices()
-		});
+	let noUserCart = parseNoUserCart()	
+	let userCart = getCart()										
+	if(activeUser && userCart.length) {   
+		createConfirmBtn()
 	}
+	else if(noUserCart.length) {
+		createConfirmBtn()
+	}
+}
+
+function confirmOrder() {	
+		if(activeUser){
+			let userList = parseUserList()
+			for (let i = 0; i < userList.length; i++){
+				if(activeUser == userList[i].customer){
+					userList[i] = emptyCart() 
+					localStorage.setItem("users", JSON.stringify(userList))
+					let totalSumCon = document.getElementById("totPrice")
+					totalSumCon.innerText = ""
+					alert("Köp bekräftat")
+					location.href = "index.html" 
+					return
+				}
+			}
+		}		
+		else if (activeUser == null) {
+			alert("Logga in för att slutföra ditt köp")		
+		}
+		allPrices()
 }
 
 //Skapar en ny user som kopierar current user + cart och sparar i localstorage
-
-
 function RemoveProdBtn(product, appendTo) {
-
+	let userCart = getCart()
+	let noUserCart = parseNoUserCart()
 	let removeProdBtn = document.createElement("button")
 	let trashCanIcon = document.createElement("div")
 	trashCanIcon.className = "far fa-trash-alt"
@@ -167,16 +183,42 @@ function RemoveProdBtn(product, appendTo) {
 	
 
 	removeProdBtn.addEventListener("click", () => {
-		
-		removeProduct(product)
-		cartCounter()
-		allPrices()
-		printCart()
-		
-		
-		
-		
-	})
+	
+	if(activeUser){	
+		if(getCart().length > 1){
+			removeProduct(product)
+			cartCounter()
+			allPrices()
+			printCart()		
+		}
+		else{
+			removeProduct(product)
+			cartCounter()
+			allPrices()
+			printCart()		
+			removeElementById("btnConfirm")
+		}
+	
+	}
+	else{
+		if(noUserCart.length > 1){
+			removeProduct(product)
+			cartCounter()
+			allPrices()
+			printCart()		
+			console.log("if")
+		}
+		else {
+			removeProduct(product)
+			cartCounter()
+			allPrices()
+			printCart()		
+			removeElementById("btnConfirm")
+			console.log("else")
+		}
+
+	}
+})
 	
 
 } 
@@ -224,14 +266,15 @@ function getUser() {
 
 		}
 	}
+
 }
 
 
 function getCart() {
 	if(activeUser){
-		getUser()
-		return getUser().cart
-		
+		let userCart = getUser().cart
+		console.log(userCart)
+		return userCart
 	}
 }
 
@@ -276,4 +319,3 @@ function dateToDay() {
 
 	return today
 }
-

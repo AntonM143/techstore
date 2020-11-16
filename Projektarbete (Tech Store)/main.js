@@ -21,6 +21,7 @@ function initSite() {
 		loadProducts();
 		loginLogoutButton()
 		cartCounter()
+		myPageBtn()
 		console.log("indexBody detected")
 	}
 }
@@ -104,6 +105,7 @@ export function loginLogoutButton() {
 			counter.innerText = ""
 			loginLogoutButton()
 			cartCounter()
+			removeElementById("minSidaKnapp")
 		})
 	}
 }
@@ -171,40 +173,68 @@ export function cartCounter(){
 	let activeUser = sessionStorage.getItem("customer")
 	localArray = JSON.parse(localArray)
 	
-		if(activeUser !== null){
-
-			for(let i = 0; i < localArray.length; i++){ //Loopar igenom alla sparade kunder
-
-				if(activeUser == localArray[i].customer){ //Letar efter en match mellan inloggad kund och sparad kund
-					
-					let counter = document.getElementById("counterCart")
-					let currentCounter = localArray[i].cart
-					if(currentCounter.length){
-						for ( let i = 0; i < currentCounter.length ; i ++){
-
-							
-							counter.innerText = currentCounter.length 
-							console.log(currentCounter.length)
-							
-
-						}
-					}else{
+	if(activeUser !== null){
+		
+		for(let i = 0; i < localArray.length; i++){ //Loopar igenom alla sparade kunder
+			
+			if(activeUser == localArray[i].customer){ //Letar efter en match mellan inloggad kund och sparad kund
+				
+				let counter = document.getElementById("counterCart")
+				let currentCounter = localArray[i].cart
+				if(currentCounter.length){
+					for ( let i = 0; i < currentCounter.length ; i ++){
 						
-						counter.innerText = ""
+						
+						counter.innerText = currentCounter.length 
+						console.log(currentCounter.length)
+						
+						
 					}
-				}	
-			}
-
-		}else {
-			let noUserCart = localStorage.getItem("noUserCart")
-			noUserCart = JSON.parse(noUserCart)
-				if(noUserCart !== null){	
+				}else{
+					
+					counter.innerText = ""
+				}
+			}	
+		}
+		
+	}else {
+		let noUserCart = localStorage.getItem("noUserCart")
+		noUserCart = JSON.parse(noUserCart)
+		let currentCounter = noUserCart
+		let counter = document.getElementById("counterCart")
+				if(noUserCart !== null && currentCounter.length){
 					for(let i = 0; i < noUserCart.length; i++){
 						let counter = document.getElementById("counterCart")
 						counter.innerText = noUserCart.length 
 						console.log(noUserCart.length)
 					}	
 				}
+				else
+				{
+					counter.innerText = ""
+				}
 		}
 }
 
+export function myPageBtn() {
+	let activeUser = sessionStorage.getItem("customer")
+	let btn = document.createElement("button")
+
+
+	if(activeUser){
+		btn.innerText = "Min Sida"
+		btn.className = "minSidaKnapp"
+		btn.id = "minSidaKnapp"
+		productContainer.appendChild(btn)
+		btn.addEventListener("click", () => {
+		
+			window.location="./myPage.html"
+
+		})
+	}
+}
+export function removeElementById(myId){
+	
+	var elem = document.getElementById(myId)
+	elem.parentNode.removeChild(elem);	
+} 
