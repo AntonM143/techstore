@@ -54,11 +54,15 @@ function printCart() {
 		}	
 	}
 	if(activeUser == null && noUserCart){
+		cartDiv.innerHTML = ""
 		for (let i = 0; i < noUserCart.length; i++){
 			let productCard = createProductCard("cartProdCard", cartDiv)
+
 			productCard.appendChild(getImgElement(noUserCart[i], "cartImg"))
 			productCard.appendChild(getTitleElement(noUserCart[i]))
 			productCard.appendChild(getPriceElement(noUserCart[i]))
+			RemoveProdBtn(noUserCart[i], productCard)							
+
 		}
 	}
 }
@@ -140,7 +144,7 @@ function confirmbtn (){
 				}
 			}		
 			
-			else if (noUserCart !== null) {
+			else if (activeUser == null) {
 				alert("Logga in för att slutföra ditt köp")		
 			}
 			allPrices()
@@ -179,8 +183,8 @@ function RemoveProdBtn(product, appendTo) {
  
 function removeProduct(product) {
 	
-	
 	let userList = parseUserList()
+	let noUserCart = parseNoUserCart()
 	
 	if(activeUser){
 		for (let i = 0; i < userList.length; i++){
@@ -188,27 +192,26 @@ function removeProduct(product) {
 			if(activeUser == userList[i].customer && cart.length){
 				for(let i = 0; i < cart.length; i++) {
 					if(cart[i].title === product.title) {
-						
-						
-						console.log(cart)
 						cart.splice(i, 1) 
-						console.log(cart)
-
 						let newUserList = userList
 						localStorage.setItem("users", JSON.stringify(newUserList))
-
 						return
 					}
 				}
 			}
 		}	
 	}
+	if(!activeUser && noUserCart){
+		for(let i = 0; i < noUserCart.length; i++){
+			if(noUserCart[i].title === product.title){
+				noUserCart.splice(i, 1)	
+				localStorage.setItem("noUserCart", JSON.stringify(noUserCart))
+				return
+			}
+		}
+	}
 } 
 
-//Misstänker att det bråkar då jag deklarerar userList = JSON.parse(userList) i flera funktioner även om det för mig logiskt inte borde..
-
-
-//Global variable synkar inte hämtars bara en gång
 
 
 function getUser() {
@@ -217,17 +220,6 @@ function getUser() {
 		for (let i = 0; i < userList.length; i++) {
 			if(userList[i].customer == activeUser){
 				return userList[i]
-			}
-
-		}
-	}
-}
-function checkUser() {
-	let userList = parseUserList()
-	if(activeUser) {
-		for (let i = 0; i < userList.length; i++) {
-			if(userList[i].customer == activeUser){
-				return true && userList[i]
 			}
 
 		}
@@ -245,29 +237,43 @@ function getCart() {
 
 
 
-function saveOldOrders(order) {
+function saveOldOrders(order) {//Kanske kan få fler användnigs områden om jag gör en if(cart) / else
     if(activeUser){
 	let user = getUser()
+	
 	console.log("cart: ", order.cart)
 	console.log("oldOlders: ", user.oldOrders)
+	
+	order.cart.splice(0, 0, dateToDay())
 	order.oldOrders.push(order.cart)
+	
 	console.log("cart after push", order.cart) 
 	console.log("end of PTOO ", order)
 	}
 }
 
-function emptyCart() {
+function emptyCart() {//samma som ovan. möjligtvis en if(cart) return userCart else något annat
 	if(activeUser){
 		let user = getUser()
 		let cart = getCart()
 		saveOldOrders(user)
+		
 		console.log("E.C = ", user.cart)
+		
 		cart.splice(cart)
 		user.cart = cart
+		
 		console.log("E.C = ", cart)
 		console.log("finalLogg = ", user)
+		
 		return user
 	}
 
+}
+
+function dateToDay() {
+	let today = new Date().toISOString().slice(0, 10)
+
+	return today
 }
 
