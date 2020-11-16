@@ -31,12 +31,20 @@ function orderHistory(){
 				for(let i = 0; i < pastOrders.length; i++){
 					
 					let productCard = createProductCard("cartProdCard", cartDiv)
+					var table = document.getElementById("myTable");
 					let inOrders = pastOrders[i]
 
 					for (let i = 0; i < inOrders.length; i++ ){
-						productCard.appendChild(getImgElement(inOrders[i], "cartImg"))
-						productCard.appendChild(getTitleElement(inOrders[i]))
-						productCard.appendChild(getPriceElement(inOrders[i]))
+						var row = table.insertRow(0);
+						var cell1 = row.insertCell(0);
+						var cell2 = row.insertCell(1);
+						var cell3 = row.insertCell(2);
+						var cell4 = row.insertCell(3);
+
+						cell1.appendChild(getImgElement(inOrders[i], "cartImg"))
+						cell2.appendChild(getTitleElement(inOrders[i]))
+						cell3.appendChild(getPriceElement(inOrders[i]))
+						
 
 					}
 				}
@@ -44,3 +52,14 @@ function orderHistory(){
 
 		}		
 }		
+
+
+
+/* var table = document.getElementById("myTable");
+var row = table.insertRow(0);
+var cell1 = row.insertCell(0);
+var cell2 = row.insertCell(1);
+var cell3 = row.insertCell(2);
+var cell4 = row.insertCell(3);
+
+ */

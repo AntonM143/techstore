@@ -186,6 +186,56 @@ a:visited {
     height: 20vh;
 }
 
+
+/* myPage styling */
+#myTable{
+    width: 40vw;
+}
+
+#orderHistory{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap; 
+}
+
+.titleText{
+    font-size: 15px;
+}
+
+.priceText{
+    font-size: 15px;
+}
+
+   .historyImg {
+    height: 5vh;
+   }
+
+table {
+    font-family: arial, sans-serif;
+   border-top: thin solid;
+   border-collapse: collapse;
+    
+  }
+  
+  td, th {
+    text-align: left;
+    padding: 8px;
+  }
+  
+  tr:nth-child(odd) {
+    background-color: #F5F5F5;;
+  }
+  td:nth-child(2) {
+    width: 1vw;
+  }
+  td:nth-child(4) {
+    width: 1vw;
+  }
+
+
 /* hover and active functions */
 
 #loginLogoutBtn:hover, .productButton:hover, .btnConfirm:hover {
