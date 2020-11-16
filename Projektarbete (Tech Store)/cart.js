@@ -75,18 +75,24 @@ function allPrices() {
 		for(let i = 0; i < userList.length; i++){	
 			if(userList[i].customer == activeUser){
 				let cart = userList[i].cart
-				for(i = 0; i < cart.length; i++){
-					let loginPrice = cart[i].price
+				if( cart.length > 0){
+					for(i = 0; i < cart.length; i++){
+						let loginPrice = cart[i].price
+						let totalSumCon = document.getElementById("totPrice")
+						let totalSum = document.createElement("p")
+						totalSumCon.innerHTML = ""
+						totalt += loginPrice
+						totalSum.className = "totalSum";
+						totalSum.innerText += "Totalt pris: " + totalt + " kr";
+						totalSumCon.appendChild(totalSum)
+					}
+				} else {
 					let totalSumCon = document.getElementById("totPrice")
-					let totalSum = document.createElement("p")
 					totalSumCon.innerHTML = ""
-					totalt += loginPrice
-					totalSum.className = "totalSum";
-					totalSum.innerText += "Totalt pris: " + totalt + " kr";
-					totalSumCon.appendChild(totalSum)
 				}
 				return
 			}
+			
 		}	
 	}
 	else{
@@ -108,7 +114,7 @@ function allPrices() {
  //funktion för knapp som bekräftar köp
 function confirmbtn (){
 	//skapar knapp samt skriver text i den
-	if(parseNoUserCart() || parseUserList()) {
+	if(parseNoUserCart() || parseUserList()){
 		let confirm = document.getElementById("confirmBtn");
 		let btn = document.createElement("button");
 		let iconBtn = document.createElement("div")
@@ -123,14 +129,11 @@ function confirmbtn (){
 				let userList = parseUserList()
 				for (let i = 0; i < userList.length; i++){
 					if(activeUser == userList[i].customer){
-						
 						userList[i] = emptyCart() 
 						localStorage.setItem("users", JSON.stringify(userList))
 						let totalSumCon = document.getElementById("totPrice")
 						totalSumCon.innerText = ""
 						alert("Köp bekräftat")
-		
-
 						location.href = "index.html" 
 						return
 					}
@@ -151,15 +154,24 @@ function confirmbtn (){
 function RemoveProdBtn(product, appendTo) {
 
 	let removeProdBtn = document.createElement("button")
+	let trashCanIcon = document.createElement("div")
+	trashCanIcon.className = "far fa-trash-alt"
 	removeProdBtn.className = "removeProdBtn"
-	removeProdBtn.innerText = "Remove product"
+	removeProdBtn.innerText = "Ta bort"
+	removeProdBtn.appendChild(trashCanIcon)
 	appendTo.appendChild(removeProdBtn)
+	
 
 	removeProdBtn.addEventListener("click", () => {
+		
 		removeProduct(product)
-		printCart()
-		allPrices()
 		cartCounter()
+		allPrices()
+		printCart()
+		
+		
+		
+		
 	})
 	
 
