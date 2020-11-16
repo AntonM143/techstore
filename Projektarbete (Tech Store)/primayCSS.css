@@ -203,6 +203,83 @@ a:visited {
     height: 20vh;
 }
 
+
+/* myPage styling */
+
+.hisProdCard{
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: space-around;
+    align-items: center;
+  
+    
+}
+
+.logoMyPage {
+  font-size: 2em;
+ 
+ height: 20px;
+    font-family: usual, sans-serif;
+	font-style: bold;
+	
+}
+
+Table{
+    
+    width: 40vw;
+    margin-bottom:50px;
+  
+}
+
+h4{
+    margin: 15px;
+}
+
+#orderHistory{
+    display: flex;
+    width: 40vw;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap; 
+}
+
+.titleText{
+    font-size: 15px;
+   
+}
+
+    .priceText{
+        font-size: 15px;
+    }
+
+   .historyImg {
+    height: 5vh;
+   }
+
+table {
+    font-family: arial, sans-serif;
+   border-top: thin solid;
+   border-collapse: collapse;
+    
+  }
+  
+  td, th {
+    text-align: left;
+    padding: 8px;
+  }
+  
+  tr:nth-child(odd) {
+    background-color: #F5F5F5;;
+  }
+  td:nth-child(1) {
+    width: 1vw;
+  }
+  td:nth-child(3) {
+    width: 1vw;
+  }
+
+
 /* hover and active functions */
 
 #loginLogoutBtn:hover, .productButton:hover, .btnConfirm:hover, .removeProdBtn:hover {
@@ -269,7 +346,6 @@ a:visited {
     font-size: 2em;
     margin-top: 2em;
     margin-bottom: 2em;
-    margin-right: 2em;
     font-family: usual, sans-serif;
 	font-style: normal;
 	font-weight: 600;

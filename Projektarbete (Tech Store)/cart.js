@@ -68,7 +68,7 @@ function printCart() {
 }
 
 
-function allPrices() {
+export function allPrices() {
 	let userList = parseUserList()
 	let activeUser = sessionStorage.getItem("customer")
 	let noUserCart = parseNoUserCart()
