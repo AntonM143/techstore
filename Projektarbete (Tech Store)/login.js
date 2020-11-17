@@ -1,4 +1,4 @@
-import { myPageBtn } from "./main.js"
+import { parseNoUserCart, parseUserList } from "./cart.js"
 
 let registerName = document.getElementById("registerCustomer")
 let registerPassword = document.getElementById("registerPassword")
@@ -63,16 +63,37 @@ function checkLoginUser(nameToCheck, passwordToCheck) {
 
 //Lägg till ett object i array och spara i localStorage
 export function addToArray() {
+   //Jobba här 
+    let noUserCart = parseNoUserCart()
+    let userList = getUserList()
    
-   
-    let myArray = getUserList()
-    myArray.push({
-        customer: registerName.value,
-        password: registerPassword.value,
-        cart: [],
-        oldOrders: []
-    })
-    saveArrayToLocal(myArray)
+    if(noUserCart) {
+        
+        userList.push({
+            customer: registerName.value,
+            password: registerPassword.value,
+            cart: noUserCart,
+            oldOrders: []
+        })
+        saveArrayToLocal(userList)
+        localStorage.removeItem("noUserCart")
+    
+    }
+    else {
+        
+        userList.push({
+            customer: registerName.value,
+            password: registerPassword.value,
+            cart: [],
+            oldOrders: []
+        })
+        saveArrayToLocal(userList)
+        
+    }
+
+
+
+
 }
 //Registrera ny användare
 function registerUser() {
@@ -107,8 +128,22 @@ function loginUser() {
         if(checkLoginUser(loginName.value, loginPassword.value)){
             sessionStorage.setItem("customer", loginName.value)
             window.location = "index.html"
+            let noUserCart = parseNoUserCart()
+            let userList = parseUserList()
+
+            if(noUserCart){
+                for(let i = 0; i < userList.length; i++){
+                    if(userList[i].customer == loginName.value){
+                        let newUserCart = userList[i].cart.concat(noUserCart)
+                        userList[i].cart = newUserCart
+                        localStorage.setItem("users", JSON.stringify(userList))
+                        localStorage.removeItem("noUserCart")
+                    }
+                }
+            }
         }
         else{
+
             loginErrorText(loginWrap, "login failed, try again!")
         }
 
