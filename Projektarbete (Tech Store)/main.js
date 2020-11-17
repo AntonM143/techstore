@@ -22,7 +22,6 @@ function initSite() {
 		loginLogoutButton()
 		cartCounter()
 		myPageBtn()
-		console.log("indexBody detected")
 	}
 }
 //Create Title Element and get content
@@ -124,15 +123,12 @@ function addProductToCart(product) {
 				let productToSave = localArray[i]
 				productToSave.cart.push(product)	
 				localStorage.setItem("users", JSON.stringify(localArray))
-				console.log(product)
 				cartCounter()
 	
 			}	
 		}
 	}
 	else{
-		console.log("inte inloggad")
-
 		let noUserCart = localStorage.getItem("noUserCart")
 		//Om localstorage är tom, skapa en array
 		if(noUserCart == null) {
@@ -144,7 +140,6 @@ function addProductToCart(product) {
 		} 
 		noUserCart.push(product)	
 		localStorage.setItem("noUserCart", JSON.stringify(noUserCart))
-		console.log(noUserCart)
 		cartCounter()
 
 	}
@@ -173,25 +168,20 @@ export function cartCounter(){
 	let activeUser = sessionStorage.getItem("customer")
 	localArray = JSON.parse(localArray)
 	
-	if(activeUser !== null){
-		
-		for(let i = 0; i < localArray.length; i++){ //Loopar igenom alla sparade kunder
-			
-			if(activeUser == localArray[i].customer){ //Letar efter en match mellan inloggad kund och sparad kund
-				
-				let counter = document.getElementById("counterCart")
-				let currentCounter = localArray[i].cart
-				if(currentCounter.length){
-					for ( let i = 0; i < currentCounter.length ; i ++){
-						
-						
-						counter.innerText = currentCounter.length 
-						console.log(currentCounter.length)
-						
-						
-					}
-				}else{
+
+		if(activeUser !== null){
+
+			for(let i = 0; i < localArray.length; i++){ //Loopar igenom alla sparade kunder
+
+				if(activeUser == localArray[i].customer){ //Letar efter en match mellan inloggad kund och sparad kund
 					
+					let counter = document.getElementById("counterCart")
+					let currentCounter = localArray[i].cart
+					if(currentCounter.length){
+						for ( let i = 0; i < currentCounter.length ; i ++){
+							counter.innerText = currentCounter.length 
+						}
+					}else{
 					counter.innerText = ""
 				}
 			}	
@@ -206,7 +196,6 @@ export function cartCounter(){
 					for(let i = 0; i < noUserCart.length; i++){
 						let counter = document.getElementById("counterCart")
 						counter.innerText = noUserCart.length 
-						console.log(noUserCart.length)
 					}	
 				}
 				else

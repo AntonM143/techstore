@@ -12,7 +12,6 @@ window.addEventListener("load", initSite)
 
 function initSite() {
     if (body){
-        console.log("loginBody detected")
         registerUser()
         loginUser()
 	}
@@ -28,8 +27,7 @@ function getUserList() {
     //Om localStorage finns, hämta och omvandla
     else {
         userArray = JSON.parse(userArray)
-    } 
-    console.log(userArray, "getUserFunction")
+    }
     return userArray
 }
 //Funktion som sparar item i localStorage
@@ -104,23 +102,19 @@ function registerUser() {
 
         checkRegisterUser(registerName.value, registerPassword.value)
         if(checkRegisterUser(registerName.value, registerPassword.value)){
-            console.log("user already exists")
             loginErrorText(registerWrap, "user already exists")
             
         }
         else if(registerName.value == ""){
-            console.log("you need to type a username")
             loginErrorText(registerWrap, "You need to type a username")
 
         }
         else if(registerPassword.value == ""){
-            console.log("you need to type a password")
             loginErrorText(registerWrap, "You need to type a password")
 
         }
         else{
             addToArray()
-            console.log("successfull")
             registerSuccessText(registerWrap, "Registration successful")
         }
 })
@@ -149,7 +143,7 @@ function loginUser() {
             }
         }
         else{
-            console.log("login failed")
+
             loginErrorText(loginWrap, "login failed, try again!")
         }
 
