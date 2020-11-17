@@ -10,8 +10,8 @@ function initSite() {
 		loginLogoutButton()
 		cartCounter()
 		orderHistory()
-		
-		
+	
+	
 	}
 }
 	
@@ -33,41 +33,29 @@ function orderHistory(){
 				for(let i = 0; i < pastOrders.length; i++){
 					let inOrders = pastOrders[i]
 					
-					
 					let productCard = createProductCard("hisProdCard", historyDiv)
 					let newTable = document.createElement("table")	
-			
 					
 					let headLine = document.createElement("h4")
 				
-					headLine.innerText = 'OrderNr: ' + (i + 1) 
+					headLine.innerText = 'Orderdatum ' +  inOrders[0]
 
 					productCard.appendChild(headLine)
 					productCard.appendChild(newTable)
 					
 
-					for (let i = 0; i < inOrders.length; i++ ){
-
-					
+					for (let i = 1; i < inOrders.length; i++ ){
+						
+						
 						let row = newTable.insertRow(0);
-						
-				
-				
-						
 						let cell1 = row.insertCell(0);
 						let cell2 = row.insertCell(1);
 						let cell3 = row.insertCell(2);
 						
-						
-					
 						cell1.appendChild(getImgElement(inOrders[i], "historyImg"))
 						cell2.appendChild(getTitleElement(inOrders[i], "titleText"))
 						cell3.appendChild(getPriceElement(inOrders[i], "priceText"))
-						
-						
-						
-						
-						
+
 
 					}
 				}
