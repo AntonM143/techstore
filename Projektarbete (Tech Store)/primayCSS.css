@@ -407,8 +407,20 @@ table {
 		justify-content: space-between;
 		align-items: center;
         width: 200px;		
-	}
-	
+    }
+    
+    .minSidaKnapp{
+        padding: 0;
+        height: 50px;
+        width: 50px;
+        right: 3%;
+        top: 90%;
+        font-size: 1em;
+      
+    }
+	table{
+        width: 100vw;
+    }
 	.hLogo, .productButton {
 		font-size: 25px;
     }
@@ -420,8 +432,9 @@ table {
     }
 }
 /* MEDIAQUERY-DELEN  MAX-WIDTH 1024px AND MIN-WIDTH 1000px*/
-@media screen and (max-width:1024px) and (min-width:1000px){
-    .fa-shopping-cart{
-        font-size: 1.8em;
+@media screen and (max-width:1024px) and (min-width:600px){
+
+    table{
+        width: 80vw;
     }
 }
