@@ -143,7 +143,7 @@ function confirmbtn (){
 	if(activeUser && userCart.length) {   
 		createConfirmBtn()
 	}
-	else if(noUserCart.length) {
+	else if(noUserCart && noUserCart.length) {
 		createConfirmBtn()
 	}
 }
@@ -200,7 +200,8 @@ function RemoveProdBtn(product, appendTo) {
 		}
 	
 	}
-	else{
+	else if(noUserCart){
+		console.log("no user cart")
 		if(noUserCart.length > 1){
 			removeProduct(product)
 			cartCounter()
