@@ -7,7 +7,6 @@ window.addEventListener("load", initSite)
 
 function initSite() {
 	if (body){
-		console.log("cartBody detected")
 		loginLogoutButton()
 		cartCounter()
 		allPrices()
@@ -240,15 +239,8 @@ function getCart() {
 function saveOldOrders(order) {//Kanske kan få fler användnigs områden om jag gör en if(cart) / else
     if(activeUser){
 	let user = getUser()
-	
-	console.log("cart: ", order.cart)
-	console.log("oldOlders: ", user.oldOrders)
-	
 	order.cart.splice(0, 0, dateToDay())
 	order.oldOrders.push(order.cart)
-	
-	console.log("cart after push", order.cart) 
-	console.log("end of PTOO ", order)
 	}
 }
 
@@ -257,15 +249,8 @@ function emptyCart() {//samma som ovan. möjligtvis en if(cart) return userCart 
 		let user = getUser()
 		let cart = getCart()
 		saveOldOrders(user)
-		
-		console.log("E.C = ", user.cart)
-		
 		cart.splice(cart)
 		user.cart = cart
-		
-		console.log("E.C = ", cart)
-		console.log("finalLogg = ", user)
-		
 		return user
 	}
 

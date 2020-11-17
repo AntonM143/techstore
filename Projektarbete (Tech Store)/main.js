@@ -21,7 +21,6 @@ function initSite() {
 		loadProducts();
 		loginLogoutButton()
 		cartCounter()
-		console.log("indexBody detected")
 	}
 }
 //Create Title Element and get content
@@ -122,15 +121,12 @@ function addProductToCart(product) {
 				let productToSave = localArray[i]
 				productToSave.cart.push(product)	
 				localStorage.setItem("users", JSON.stringify(localArray))
-				console.log(product)
 				cartCounter()
 	
 			}	
 		}
 	}
 	else{
-		console.log("inte inloggad")
-
 		let noUserCart = localStorage.getItem("noUserCart")
 		//Om localstorage är tom, skapa en array
 		if(noUserCart == null) {
@@ -142,7 +138,6 @@ function addProductToCart(product) {
 		} 
 		noUserCart.push(product)	
 		localStorage.setItem("noUserCart", JSON.stringify(noUserCart))
-		console.log(noUserCart)
 		cartCounter()
 
 	}
@@ -181,12 +176,7 @@ export function cartCounter(){
 					let currentCounter = localArray[i].cart
 					if(currentCounter.length){
 						for ( let i = 0; i < currentCounter.length ; i ++){
-
-							
 							counter.innerText = currentCounter.length 
-							console.log(currentCounter.length)
-							
-
 						}
 					}else{
 						
@@ -202,7 +192,6 @@ export function cartCounter(){
 					for(let i = 0; i < noUserCart.length; i++){
 						let counter = document.getElementById("counterCart")
 						counter.innerText = noUserCart.length 
-						console.log(noUserCart.length)
 					}	
 				}
 		}
