@@ -211,10 +211,15 @@ export function myPageBtn() {
 
 
 	if(activeUser){
-		btn.innerText = "Min Sida"
-		btn.className = "minSidaKnapp"
+		/* btn.innerText = "Min Sida" */
+
+		
+		btn.className = "minSidaKnapp"  
 		btn.id = "minSidaKnapp"
 		productContainer.appendChild(btn)
+		let icon = document.createElement("div")
+		icon.className = "far fa-user"
+		btn.appendChild(icon)
 		btn.addEventListener("click", () => {
 		
 			window.location="./myPage.html"
