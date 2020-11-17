@@ -193,12 +193,14 @@ a:visited {
     flex-direction: column;
     min-width: 15vw;
     padding: 10px;
-    margin-right: 50px;
+   /*  margin-bottom: 30px;
+    margin-right: 50px; */
+    margin: 10px;
     border: 2px solid #5596F5;
     border-radius: 15px;
     background-color: #F5F5F5;
     align-items: center;
-    margin-bottom: 30px;
+    justify-content: space-evenly;
 }
 
 .cartImg {
@@ -369,7 +371,33 @@ table {
     justify-content: flex-end;
     margin-right: 100px;
     width: 100vw;
-    z-index: 0;
+    z-index: 1;
+}
+
+.minSidaKnapp{
+    display: flex;
+    padding: 20px;
+    height: 80px;
+    width: 80px;
+    position: fixed;
+    right: 50px;
+    top: 100px;
+    border-radius: 100%;
+    border: none;
+    z-index: 1;
+    box-shadow: 5px 0 20px darkgray;
+    outline: none;
+    cursor: pointer;
+    font-size: 1.3em;
+    align-items: center;
+
+}
+.minSidaKnapp:hover {
+    background-color: darkgray;
+}
+.minSidaKnapp:active {
+    box-shadow: inset 0px 0px 20px black;
+    font-size: 1.1em;
 }
 
 /* MEDIAQUERY-DELEN  MAX-WIDTH 600px*/

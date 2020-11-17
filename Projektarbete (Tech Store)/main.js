@@ -21,6 +21,7 @@ function initSite() {
 		loadProducts();
 		loginLogoutButton()
 		cartCounter()
+		myPageBtn()
 	}
 }
 //Create Title Element and get content
@@ -103,6 +104,7 @@ export function loginLogoutButton() {
 			counter.innerText = ""
 			loginLogoutButton()
 			cartCounter()
+			removeElementById("minSidaKnapp")
 		})
 	}
 }
@@ -166,6 +168,7 @@ export function cartCounter(){
 	let activeUser = sessionStorage.getItem("customer")
 	localArray = JSON.parse(localArray)
 	
+
 		if(activeUser !== null){
 
 			for(let i = 0; i < localArray.length; i++){ //Loopar igenom alla sparade kunder
@@ -179,21 +182,48 @@ export function cartCounter(){
 							counter.innerText = currentCounter.length 
 						}
 					}else{
-						
-						counter.innerText = ""
-					}
-				}	
-			}
-
-		}else {
-			let noUserCart = localStorage.getItem("noUserCart")
-			noUserCart = JSON.parse(noUserCart)
-				if(noUserCart !== null){	
+					counter.innerText = ""
+				}
+			}	
+		}
+		
+	}else {
+		let noUserCart = localStorage.getItem("noUserCart")
+		noUserCart = JSON.parse(noUserCart)
+		let currentCounter = noUserCart
+		let counter = document.getElementById("counterCart")
+				if(noUserCart !== null && currentCounter.length){
 					for(let i = 0; i < noUserCart.length; i++){
 						let counter = document.getElementById("counterCart")
 						counter.innerText = noUserCart.length 
 					}	
 				}
+				else
+				{
+					counter.innerText = ""
+				}
 		}
 }
 
+export function myPageBtn() {
+	let activeUser = sessionStorage.getItem("customer")
+	let btn = document.createElement("button")
+
+
+	if(activeUser){
+		btn.innerText = "Min Sida"
+		btn.className = "minSidaKnapp"
+		btn.id = "minSidaKnapp"
+		productContainer.appendChild(btn)
+		btn.addEventListener("click", () => {
+		
+			window.location="./myPage.html"
+
+		})
+	}
+}
+export function removeElementById(myId){
+	
+	var elem = document.getElementById(myId)
+	elem.parentNode.removeChild(elem);	
+} 
