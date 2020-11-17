@@ -1,4 +1,5 @@
 import { parseNoUserCart, parseUserList } from "./cart.js"
+import { cartCounter } from "./main.js"
 
 let registerName = document.getElementById("registerCustomer")
 let registerPassword = document.getElementById("registerPassword")
@@ -14,6 +15,7 @@ function initSite() {
     if (body){
         registerUser()
         loginUser()
+        cartCounter()
 	}
 }
 

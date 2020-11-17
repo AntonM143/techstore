@@ -164,6 +164,7 @@ function confirmOrder() {
 		}		
 		else if (activeUser == null) {
 			alert("Logga in för att slutföra ditt köp")		
+			window.location = "./login.html"
 		}
 		allPrices()
 }
