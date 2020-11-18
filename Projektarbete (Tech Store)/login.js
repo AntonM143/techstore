@@ -18,7 +18,7 @@ function initSite() {
         cartCounter()
 	}
 }
-
+/** Om ingen användar lista finns, skapa ny. Annars hämta och parse */
 function getUserList() {
     //Funktion som hämtar eller skapar array i/från localStorage
     let userArray = localStorage.getItem("users")
@@ -32,11 +32,11 @@ function getUserList() {
     }
     return userArray
 }
-//Funktion som sparar item i localStorage
+/** Funktion som sparar item i localStorage */
 export function saveArrayToLocal(arrayToLocal) {
     localStorage.setItem("users", JSON.stringify(arrayToLocal))
 }
-//Funktion som kollar att användare inte redan finns
+/** Funktion som kollar att användare inte redan finns */
 function checkRegisterUser(nameToCheck, passwordToCheck) { 
     let myList = getUserList() 
     
@@ -48,7 +48,7 @@ function checkRegisterUser(nameToCheck, passwordToCheck) {
     }
     return registerListMatch
 }
-
+/** Kollar om användarenamn och lösenord matchar */
 function checkLoginUser(nameToCheck, passwordToCheck) { 
     let myList = getUserList() 
     
@@ -63,26 +63,12 @@ function checkLoginUser(nameToCheck, passwordToCheck) {
 
 
 
-//Lägg till ett object i array och spara i localStorage
+/** Lägg till ett object i array och spara i localStorage */
 export function addToArray() {
    //Jobba här 
     let noUserCart = parseNoUserCart()
     let userList = getUserList()
-   
-    if(noUserCart) {
-        
-        userList.push({
-            customer: registerName.value,
-            password: registerPassword.value,
-            cart: noUserCart,
-            oldOrders: []
-        })
-        saveArrayToLocal(userList)
-        localStorage.removeItem("noUserCart")
-    
-    }
-    else {
-        
+       
         userList.push({
             customer: registerName.value,
             password: registerPassword.value,
@@ -90,14 +76,8 @@ export function addToArray() {
             oldOrders: []
         })
         saveArrayToLocal(userList)
-        
-    }
-
-
-
-
 }
-//Registrera ny användare
+/** Registrerar en ny användare */
 function registerUser() {
     let registerButton = document.getElementById("registerButton")
     registerButton.addEventListener("click", () => {
@@ -121,6 +101,7 @@ function registerUser() {
         }
 })
 }
+/** Loggar in användare */
 function loginUser() {
     let loginButton = document.getElementById("loginButton")
 
@@ -151,21 +132,22 @@ function loginUser() {
 
     })
 }
-    function loginErrorText(appendToDiv, text) {
+/** Skriver ut felmeddelande */
+function loginErrorText(appendToDiv, text) {
+    
+    message.innerText = text
+    message.style.color = "red"
+    appendToDiv.appendChild(message)
         
-        message.innerText = text
-        message.style.color = "red"
-        appendToDiv.appendChild(message)
-         
-    }
-
-    function registerSuccessText(appendToDiv, text) {
-        
-        message.innerText = text
-        message.style.color = "green"
-        appendToDiv.appendChild(message)
-        
-    }
+}
+/** Skriver ut "rätt"meddelande */
+function registerSuccessText(appendToDiv, text) {
+    
+    message.innerText = text
+    message.style.color = "green"
+    appendToDiv.appendChild(message)
+    
+}
 
 
 

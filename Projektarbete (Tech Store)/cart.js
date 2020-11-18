@@ -1,5 +1,4 @@
-import {loginLogoutButton, cartCounter, getTitleElement, getPriceElement, getDescriptionElement, getImgElement, createProductCard, myPageBtn, removeElementById} from "./main.js"
-import {  addToArray, saveArrayToLocal } from "./login.js"
+import {loginLogoutButton, cartCounter, getTitleElement, getPriceElement, getImgElement, createProductCard, myPageBtn, removeElementById} from "./main.js"
 let body = document.getElementById("cartBody")
 let activeUser = sessionStorage.getItem("customer")
 window.addEventListener("load", initSite)
@@ -15,19 +14,20 @@ function initSite() {
 		myPageBtn()
 	}
 }
-	
+/** Hämtar och parsear localstorage lista = "userList"  */	
 export function parseUserList() {
 	let userList = localStorage.getItem("users")
 	userList = JSON.parse(userList)	
 	return userList
 }
+/** Hämtar och parsear "noUserCart" */
 export function parseNoUserCart () {
 	let noUserCart = localStorage.getItem("noUserCart")
 	noUserCart = JSON.parse(noUserCart)
 	return noUserCart
 }
 
-//Funktion som skriver ut sparad kundvagn till kundvagns sidan
+/** Funktion som skriver ut sparad kundvagn till kundvagns sidan */
 function printCart() {
 	let userList = parseUserList()
 	let noUserCart = parseNoUserCart()
@@ -65,7 +65,7 @@ function printCart() {
 	}
 }
 
-
+/** Räknar och skriver ut totalpris (Medvetna om att funktions namnet är missvisande) */
 export function allPrices() {
 	let userList = parseUserList()
 	let activeUser = sessionStorage.getItem("customer")
@@ -119,7 +119,7 @@ export function allPrices() {
 
 	}
 }
-
+/** Skapar slutför köp knappen */
 function createConfirmBtn(){
 	let container = document.getElementById("productContainer");
 	let iconBtn = document.createElement("div")
@@ -135,7 +135,7 @@ function createConfirmBtn(){
 	})
 } 
 
- //funktion för knapp som bekräftar köp
+/** Skapar knappen beronde på olika vilkor */
 function confirmbtn (){
 	let noUserCart = parseNoUserCart()	
 	let userCart = getCart()										
@@ -146,7 +146,7 @@ function confirmbtn (){
 		createConfirmBtn()
 	}
 }
-
+/** Slutför köp funktion */
 function confirmOrder() {	
 		if(activeUser){
 			let userList = parseUserList()
@@ -169,7 +169,7 @@ function confirmOrder() {
 		allPrices()
 }
 
-//Skapar en ny user som kopierar current user + cart och sparar i localstorage
+/** Skapar en ny user som kopierar current user + cart och sparar i localstorage */
 function RemoveProdBtn(product, appendTo) {
 	let userCart = getCart()
 	let noUserCart = parseNoUserCart()
@@ -201,13 +201,11 @@ function RemoveProdBtn(product, appendTo) {
 	
 	}
 	else if(noUserCart){
-		console.log("no user cart")
 		if(noUserCart.length > 1){
 			removeProduct(product)
 			cartCounter()
 			allPrices()
 			printCart()		
-			console.log("if")
 		}
 		else {
 			removeProduct(product)
@@ -215,7 +213,6 @@ function RemoveProdBtn(product, appendTo) {
 			allPrices()
 			printCart()		
 			removeElementById("btnConfirm")
-			console.log("else")
 		}
 
 	}
@@ -223,7 +220,7 @@ function RemoveProdBtn(product, appendTo) {
 	
 
 } 
- 
+/** Tar bort vald produkt */
 function removeProduct(product) {
 	
 	let userList = parseUserList()
@@ -256,7 +253,7 @@ function removeProduct(product) {
 } 
 
 
-
+/** Hämtar aktuell användare från index */
 function getUser() {
 	let userList = parseUserList()
 	if(activeUser) {
@@ -270,25 +267,23 @@ function getUser() {
 
 }
 
-
+/** Hämtar cart på aktuell användarindex */
 function getCart() {
 	if(activeUser){
 		let userCart = getUser().cart
-		console.log(userCart)
 		return userCart
 	}
 }
 
 
-
+/** Sparar gamla ordrar */
 function saveOldOrders(order) {//Kanske kan få fler användnigs områden om jag gör en if(cart) / else
     if(activeUser){
-	let user = getUser()
 	order.cart.splice(0, 0, dateToDay())
 	order.oldOrders.push(order.cart)
 	}
 }
-
+/** Tömmer carten och sparar ordern */
 function emptyCart() {//samma som ovan. möjligtvis en if(cart) return userCart else något annat
 	if(activeUser){
 		let user = getUser()
@@ -300,7 +295,7 @@ function emptyCart() {//samma som ovan. möjligtvis en if(cart) return userCart 
 	}
 
 }
-
+/** returnerar dagens datum */
 function dateToDay() {
 	let today = new Date().toISOString().slice(0, 10)
 
