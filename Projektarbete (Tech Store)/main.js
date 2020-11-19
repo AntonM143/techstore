@@ -24,28 +24,28 @@ function initSite() {
 		myPageBtn()
 	}
 }
-//Create Title Element and get content
+/** Create Title Element and get content */
 export function getTitleElement(product, myClass) {
 	let productTitle = document.createElement('h2');
 	productTitle.className = myClass;
 	productTitle.innerText = product.title;
 	return productTitle;
 }
-//Create Price element and get content
+/** Create Price element and get content */
 export function getPriceElement(product, myClass) {
 	let productPrice = document.createElement('p');
 	productPrice.className = myClass;
 	productPrice.innerText = product.price + ':-';
 	return productPrice;
 }
-//Create Description element and get content
+/** Create Description element and get content */
 export function getDescriptionElement(product, myClass) {
 	let productDescr = document.createElement('div');
 	productDescr.className = myClass;
 	productDescr.innerText = product.description;
 	return productDescr;
 }
-// Create IMG element append to parent container div and get source
+/** Create IMG element append to parent container div and get source */
 export function getImgElement(product, myClass) {
 	let productImgContainer = document.createElement('div');
 	productImgContainer.className = 'productImgContainer';
@@ -55,33 +55,27 @@ export function getImgElement(product, myClass) {
 	productImgContainer.appendChild(productImg);
 	return productImgContainer;
 }
-//Create productCard and append it to productContainer
+/** Create productCard and append it to productContainer */
 export function createProductCard(myClass, appendTo) {
 	let productCard = document.createElement('div');
 	productCard.className = myClass;
 	appendTo.appendChild(productCard);
 	return productCard;
 }
-// Create a button
+/** Create a button for productCard */
 function cartButton(product) {
     let	productButton = document.createElement("button")
     productButton.className = "productButton"
     productButton.innerText = "lägg till i kundvagn"
-	//För att få rätt produkt i addToCart
-/* 	let productList = listOfProducts[i]; 
- */	
 	let iconButton = document.createElement("div")
     iconButton.className = "fas fa-cart-arrow-down"
 	productButton.addEventListener("click", () => {
 		addProductToCart(product)
 	 })
-
     productButton.appendChild(iconButton)   
-
-
 	return productButton
 }
-//Dynamisk login och logut knapp
+/** Dynamisk login och logut knapp */
 export function loginLogoutButton() {
 	let loginLogoutBtn = document.getElementById("loginLogoutBtn")
 	let loginIcon = document.createElement("div")
@@ -104,16 +98,17 @@ export function loginLogoutButton() {
 			counter.innerText = ""
 			loginLogoutButton()
 			cartCounter()
-			removeElementById("minSidaKnapp")
+			if(body){
+				removeElementById("minSidaKnapp")
+			}
+			else{
+				window.location = "./index.html"
+			}
 		})
 	}
 }
-
-
-function addProductToCart(product) {
-
-
-	
+/** Lägger till produkt i kundvagn */
+function addProductToCart(product) {	
 	let localArray = localStorage.getItem("users")
 	let activeUser = sessionStorage.getItem("customer")
 	localArray = JSON.parse(localArray)
@@ -161,20 +156,15 @@ function addProductsToWebpage() {
 	}
 }
 
-
+/**Räknar produkter i kundvagn och skriver ut antal */
 export function cartCounter(){
 
 	let localArray = localStorage.getItem("users")
 	let activeUser = sessionStorage.getItem("customer")
 	localArray = JSON.parse(localArray)
-	
-
 		if(activeUser !== null){
-
-			for(let i = 0; i < localArray.length; i++){ //Loopar igenom alla sparade kunder
-
-				if(activeUser == localArray[i].customer){ //Letar efter en match mellan inloggad kund och sparad kund
-					
+			for(let i = 0; i < localArray.length; i++){ 
+				if(activeUser == localArray[i].customer){ 
 					let counter = document.getElementById("counterCart")
 					let currentCounter = localArray[i].cart
 					if(currentCounter.length){
@@ -186,7 +176,6 @@ export function cartCounter(){
 				}
 			}	
 		}
-		
 	}else {
 		let noUserCart = localStorage.getItem("noUserCart")
 		noUserCart = JSON.parse(noUserCart)
@@ -204,16 +193,13 @@ export function cartCounter(){
 				}
 		}
 }
-
+/**Skapar dynamisk knapp till min sida */
 export function myPageBtn() {
 	let activeUser = sessionStorage.getItem("customer")
 	let btn = document.createElement("button")
 
 
 	if(activeUser){
-		/* btn.innerText = "Min Sida" */
-
-		
 		btn.className = "minSidaKnapp"  
 		btn.id = "minSidaKnapp"
 		productContainer.appendChild(btn)
@@ -221,14 +207,12 @@ export function myPageBtn() {
 		icon.className = "far fa-user"
 		btn.appendChild(icon)
 		btn.addEventListener("click", () => {
-		
 			window.location="./myPage.html"
-
 		})
 	}
 }
-export function removeElementById(myId){
-	
+/** Funktion för att ta bort html element */
+export function removeElementById(myId){	
 	var elem = document.getElementById(myId)
 	elem.parentNode.removeChild(elem);	
 } 

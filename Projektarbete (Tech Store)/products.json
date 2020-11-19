@@ -21,32 +21,32 @@
         "price": 7495
     },{
         "title": "OnePlus Nord",
-        "description": "Super nice and beautiful smartphone from LG.",
+        "description": "Super nice and beautiful smartphone from Oneplus.",
         "image": "assets/nord.png",
         "price": 5590
     },{
         "title": "Huawei Mate 40",
-        "description": "Super nice and beautiful smartphone from LG.",
+        "description": "Super nice and beautiful smartphone from Huawei.",
         "image": "assets/HuaweiMate40Pro.png",
         "price": 8990
     },{
         "title": "Iphone 12",
-        "description": "Super nice and beautiful smartphone from LG.",
+        "description": "Super nice and beautiful smartphone from Apple.",
         "image": "assets/iphone-12.png",
         "price": 15090
     },{
         "title": "Samsung Galaxy S20",
-        "description": "Super nice and beautiful smartphone from LG.",
+        "description": "Super nice and beautiful smartphone from Samsung.",
         "image": "assets/galaxy-s20.png",
         "price": 11990
     },{
-        "title": "Samsung Galaxy Z Fold E",
-        "description": "Super nice and beautiful smartphone from LG.",
+        "title": "Samsung Galaxy Z Fold",
+        "description": "Super nice and beautiful smartphone from Samsung.",
         "image": "assets/galaxy-z-fold.png",
         "price": 22690
     },{
         "title": "Samsung Galaxy Z Flip",
-        "description": "Super nice and beautiful smartphone from LG.",
+        "description": "Super nice and beautiful smartphone from Samsung.",
         "image": "assets/galaxy-flip.png",
         "price": 16300
     }
