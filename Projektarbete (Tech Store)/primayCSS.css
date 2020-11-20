@@ -1,0 +1,531 @@
+* {
+	box-sizing: border-box;
+	font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
+
+}
+/* Omfattande containers */
+body {
+	margin: 0;
+}
+
+header {
+	top: 0;
+	left: 0;
+	right: 0;
+	height: 7vh;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	background-color: #212121;
+	color: white;
+	padding-left: 20px;
+    position: fixed;
+    z-index: 1;
+}
+
+main {
+	margin-top: 7vh;
+}
+
+#productContainer {
+	display: flex;
+	/* min-height: 90vh; */
+    align-items: center;
+    text-align: center;
+	background-color:#FFFFFF; /* For develope purpose */
+}
+
+/* LoginSida */
+
+#loginWrap {
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.formWrap {
+    border: 1px solid #5596F5;
+    margin-top: 10vh;
+    width: 400px;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    border-radius: 10px;
+    background-color: #F5F5F5;   
+}
+.formWrap > h2 {
+    margin: 0;
+}
+
+.loginInputs {
+    height: 30px;
+    font-size: 1.5em;
+    margin: 5px;
+}
+
+/* myPage styling */
+
+.hisProdCard{
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.logoMyPage {
+    font-size: 2em;
+    height: 20px;
+    font-family: usual, sans-serif;
+	font-style: bold;
+}
+
+Table{
+    width: 40vw;
+    margin-bottom:50px;
+}
+
+h4{
+    margin: 15px;
+}
+
+#orderHistory{
+    display: flex;
+    width: 40vw;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap; 
+}
+
+.titleText{
+    font-size: 15px;
+   
+}
+
+.priceText{
+    font-size: 15px;
+}
+
+.historyImg {
+    height: 5vh;
+}
+
+table {
+    font-family: arial, sans-serif;
+    border-top: thin solid;
+    border-collapse: collapse;
+  }
+
+  td, th {
+    text-align: left;
+    padding: 8px;
+  }
+
+  tr:nth-child(odd) {
+    background-color: #F5F5F5;;
+  }
+
+  td:nth-child(1) {
+    width: 1vw;
+  }
+
+  td:nth-child(3) {
+    width: 1vw;
+  }
+
+/* Styling på produktkort till index.html */
+
+.productCard {
+    background-color: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 5vh;
+    width: 100%;
+    font-weight: bold; 
+   }
+    
+.productCard:nth-child(even) {
+    background-color: #F5F5F5;
+}
+   
+.productCard:last-child {
+    margin-bottom: 10vh;
+}
+
+.productPrice {
+    margin-top: -8px;
+    font-size: 1.2em;
+    font-weight: bolder;
+}
+
+.productDescr {
+    font-size: 1em;
+}
+   
+.productImg {
+    max-width: 100%;
+    max-height: 86.5vh;
+    object-fit: contain;
+    padding: 1em;
+}
+   
+.productTitle {
+    font-size: 4em;
+    margin-bottom: 5px;
+}
+
+/* kundvagn styling */
+
+#cartProducts {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.cartProdCard {
+    display: flex;
+    flex-direction: column;
+    width: 15vw;
+    height: 45vh;
+    padding: 10px;
+    margin: 10px;
+    border: 2px solid #5596F5;
+    border-radius: 15px;
+    background-color: #F5F5F5;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.cartImg {
+    height: 20vh;
+    max-width: 100%;
+    object-fit: contain;
+}
+
+.cartProdCard > h2 {
+    margin: 0;
+}
+
+/* Knappar */
+
+.minSidaKnapp{
+    display: flex;
+    justify-content: center;
+    padding: 25px;
+    height: 80px;
+    width: 80px;
+    position: fixed;
+    right: 2.5vw;
+    top: 10vh;
+    border-radius: 100%;
+    border: none;
+    z-index: 1;
+    box-shadow: 5px 0 20px darkgray;
+    outline: none;
+    cursor: pointer;
+    font-size: 2.5em;
+    align-items: center;
+
+}
+
+.minSidaKnapp:hover {
+    background-color: darkgray;
+}
+
+.minSidaKnapp:active {
+    box-shadow: inset 0px 0px 20px black;
+    font-size: 1.1em;
+}
+
+#loginLogoutBtn { 
+    height: 7vh; 
+    min-width: 17vh; 
+	background-color: #5596F5;	
+	color: #ffffff;
+    border: none;
+    font-size: 1.7em;
+    outline: none;                
+    border-top-left-radius: 0.5em;
+    border-bottom-left-radius: 0.5em;
+}
+
+.productButton, .btnConfirm, .removeProdBtn{
+    display: flex;
+    font-size: 1.7em;
+    height: 7vh;
+    flex-direction: row-reverse;
+    border: none;
+    border-radius: 0.5em;
+    align-items: center;
+    color: #FFFFFF;
+    background-color: #5596F5;
+    outline: none;     
+    margin-bottom: 30px;            
+}
+
+.removeProdBtn{
+    justify-content: space-evenly;
+    font-size: 1em;
+    margin: 0;
+    min-width: 10vw; 
+    min-height: 5vh;
+    max-height: 5vh;
+    background-color: #E64E4E;
+}
+.btnConfirm {
+    width: 20vw;
+    justify-content: center;
+}
+
+.formButtons {
+    background-color: #5596F5;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    height: 40px;
+    width: 300px;
+    font-size: 2em;
+    outline: none;
+}
+
+.formButtons:active {
+    font-size: 1.8em;
+}
+
+/* hover and active functions */
+
+#loginLogoutBtn:hover, .productButton:hover, .btnConfirm:hover, .removeProdBtn:hover, .formButtons:hover {
+    box-shadow: inset 0px 0px 20px white;
+}
+
+#loginLogoutBtn:active, .productButton:active, .btnConfirm:active {
+    box-shadow: inset 0px 0px 60px white;
+    font-size: 1.6em; 
+}
+
+
+
+
+
+.fa-shopping-cart{
+    margin-right: 0.5em;
+}
+.loginIcon {
+    margin-left: 10px;
+}
+
+.navLeft{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 350px;		
+}
+.navRight {
+    display: flex;
+    align-items: center;
+}
+
+.hLogo {
+	font-family: usual, sans-serif;
+	font-style: normal;
+	font-weight: 600;
+	font-size: 3em;
+}
+
+.hButton {
+    font-size: 2em;
+    display: flex;
+    align-items: center;
+}
+
+
+
+
+
+.column {
+	flex-direction: column;
+}
+
+.row {
+	flex-direction: row;
+}
+
+
+
+
+
+
+
+.fa-check {
+    padding: 0.5em;
+    font-size: 20px;
+
+}
+.fa-cart-arrow-down{
+    text-align: start;
+    flex: 1 0 0;
+    padding: 10px;
+}
+
+a:link {
+    text-decoration: none;
+    color: white;
+    
+}
+a:visited {
+    text-decoration: none;
+    color: white
+}
+
+
+
+
+
+
+
+
+
+
+
+
+#counterCart{
+    margin: 10px;
+}
+
+.logoKundvagn {
+    font-size: 2em;
+    margin-top: 2em;
+    margin-bottom: 2em;
+    font-family: usual, sans-serif;
+	font-style: normal;
+	font-weight: 600;
+}
+.logoKundvagn > i{
+    margin-right: 0.5em;
+}
+
+.totalSum{
+    font-family: usual, sans-serif;
+	font-style: normal;
+    font-weight: 600;
+    font-size: 2em;
+}
+
+
+
+/* MEDIAQUERY-DELEN  MAX-WIDTH 600px*/
+@media only screen and (max-width: 600px) {
+	.navLeft {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+        width: 200px;		
+    }
+    
+    .minSidaKnapp{
+        padding: 0;
+        height: 60px;
+        width: 60px;
+        right: 3%;
+        top: 90%;
+        font-size: 2em;
+      
+    }
+	table{
+        width: 100vw;
+    }
+	.hLogo, .productButton {
+		font-size: 25px;
+    }
+    #loginLogoutBtn, .productDescr {
+        font-size: 18px;
+    }
+    .productTitle{
+        font-size: 50px;
+    }
+
+    /* Kundvagn */
+    .cartProdCard {
+
+        width: 40vw;
+        min-height: 45vh; 
+    }
+    .cartProdCard > h2 {
+        font-size: 1.2em;
+    }
+
+    .removeProdBtn {
+        width: 80%;
+    }
+    .fa-shopping-cart {
+        font-size: 0.8em;
+    }
+    #counterCart {
+        font-size: 1.5em;
+    }
+    .totalSum {
+        font-size: 1.8em;
+    } 
+    .logoKundvagn {
+        margin: 20px;
+    }
+
+}
+/* MEDIAQUERY-DELEN  MAX-WIDTH 1024px AND MIN-WIDTH 1000px*/
+@media screen and (max-width:1024px) and (min-width:600px){
+
+    table{
+        width: 80vw;
+    }
+    .cartProdCard {
+
+        width: 30vw;
+        min-height: 45vh; 
+    }
+   
+    .removeProdBtn {
+        width: 80%;
+        font-size: 1.5em;
+    }
+    .cartProdCard > h2 {
+        font-size: 2em;
+    }
+
+    .cartProdCard > p {
+        font-size: 1.5em;
+    }
+
+    .btnConfirm {
+        width: 50%;
+        justify-content: center;
+    }
+
+    .totalSum {
+        font-size: 3.5em;
+    }
+    
+    .logoKundvagn {
+        font-size: 4em;
+        margin: 40px
+    }
+
+    .historyImg {
+        height: 10vh;
+    }
+    .hisProdCard > h4 {
+        font-size: 1.8em;
+    }
+    .titleText {
+        font-size: 1.5em;
+    }
+    .priceText {
+        font-size: 1.5em;
+    }
+}

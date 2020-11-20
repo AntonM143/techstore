@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+
+<html>
+    <head>
+        <title>TechStore</title>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+        <link rel="stylesheet" href="https://use.typekit.net/lxe5rkg.css"/>
+        <link rel="stylesheet" href="primayCSS.css">
+        <script src="https://kit.fontawesome.com/d32b574ff2.js" crossorigin="anonymous"></script>
+        <script type="module" src="./login.js"></script>
+    </head>
+    <body id="loginBody">
+        <header>
+            <div class="navLeft">
+				<a href="./index.html"><div class="hLogo">Techstore</div></a>
+			</div>
+
+            <div class="navRight">
+				<div>
+					<h1 id="counterCart"></h1>
+				</div>
+                <a href="./cart.html"><div class="hButton"><i class="fas fa-shopping-cart"></i></div></a>
+            </div>                
+        </header>
+
+        <main>
+            <div id="loginWrap">
+                <div id="loginDiv" class="formWrap">
+                    <h2>Logga in</h2>
+                    <input class="loginInputs" id="customerName" type="text" placeholder="user name">
+                    <input class="loginInputs" id="customerPassword" type="password" placeholder="password">
+                    <button class="formButtons" id="loginButton">Logga in</button>
+                </div>
+                <div id="registerDiv" class="formWrap">
+                    <h2>Registrera</h2>
+                    <input class="loginInputs" id="registerCustomer" type="text" placeholder="user name">
+                    <input class="loginInputs" id="registerPassword" type="password" placeholder="password">
+                    <button class="formButtons" id="registerButton">Registrera</button>
+                </div>
+            </div>
+
+        </main>
+
+    </body>
+</html>
